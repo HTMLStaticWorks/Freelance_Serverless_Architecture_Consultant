@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Our Serverless Architect | Serverless.IO</title>
+  <meta name="description" content="Reach out to our cloud optimization consultancy. Book an audit session, submit a support ticket, or request a serverless proposal.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="logo-container" onclick="window.location.href='../index.html'">
+        <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+        <span class="logo-text">Serverless.IO</span>
+      </div>
+
+      <!-- Hamburger menu toggle -->
+      <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Center navigation menu options -->
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="home2.html" class="nav-link">Home 2</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+          <li><a href="dashboard.html" class="btn btn-outline" style="padding: 6px 16px; font-size: 0.85rem;">Dashboard</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+          <button class="rtl-toggle">RTL</button>
+          <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+          <a href="login.html" class="btn btn-primary" style="padding: 10px 20px;">Client Portal</a>
+        </div>
+      </nav>
+
+      <!-- Right side headers elements -->
+      <div class="header-actions">
+        <button class="rtl-toggle" aria-label="Toggle Right to Left">RTL</button>
+        <button class="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <a href="login.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.9rem;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="margin-top: var(--header-height);">
+
+    <!-- SECTION 1: CONTACT SUPPORT HERO -->
+    <section class="section hero-section" style="padding-bottom: 60px;">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="badge"><i class="fas fa-headset"></i> Connect with Our Team</span>
+          <h1 class="hero-title">Request a Serverless <span>Diagnostic Audit</span></h1>
+          <p class="hero-subtitle">Need to optimize your serverless pipelines or solve latency bottlenecks? Get in touch with our certified multi-cloud architects. Average SLA response is 24 business hours.</p>
+          <div class="hero-buttons">
+            <a href="#booking" class="btn btn-primary">Book Technical Session</a>
+            <a href="dashboard.html" class="btn btn-secondary">Access Client Portal</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="serverless-graphic">
+            <div class="graphic-header">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="graphic-title">contact-routes.json</span>
+            </div>
+            <div class="graphic-content">
+              <span class="code-keyword">const</span> contactMap = {<br>
+              &nbsp;&nbsp;billingQueries: <span class="code-string">"billing@serverless.io"</span>,<br>
+              &nbsp;&nbsp;architectureAudits: <span class="code-string">"audit@serverless.io"</span>,<br>
+              &nbsp;&nbsp;responseSLA: <span class="code-num">24</span>, <span class="code-comment">// hours</span><br>
+              &nbsp;&nbsp;consultationForm: <span class="code-string">"Active"</span><br>
+              };
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE CONSULTATION BOOKING FORM -->
+    <section class="section" id="booking" style="background: rgba(79, 70, 229, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container" style="max-width: 800px;">
+        <div class="section-header">
+          <h2>Architecture Audit Intake Form</h2>
+          <p>Provide your system parameters below. Our consulting team will review your serverless layouts before our strategy call.</p>
+        </div>
+
+        <div class="premium-card" style="padding: 40px; text-align: left; align-items: stretch;">
+          <form id="consultation-form" style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="hero-grid">
+              <div style="display: flex; flex-direction: column;">
+                <label for="contact-name" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Engineering Representative *</label>
+                <input type="text" id="contact-name" required placeholder="E.g., Sarah Jenkins" class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
+              </div>
+
+              <div style="display: flex; flex-direction: column;">
+                <label for="contact-email" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Corporate Email Address *</label>
+                <input type="email" id="contact-email" required placeholder="E.g., sjenkins@company.com" class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="hero-grid">
+              <div style="display: flex; flex-direction: column;">
+                <label for="contact-platform" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Active Cloud Provider</label>
+                <select id="contact-platform" class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
+                  <option value="aws">AWS Lambda Stack</option>
+                  <option value="gcp">Google Cloud Functions</option>
+                  <option value="cloudflare">Cloudflare Workers / Edge</option>
+                  <option value="azure">Azure Functions Platform</option>
+                  <option value="hybrid">Hybrid / Multi-Cloud Setup</option>
+                </select>
+              </div>
+
+              <div style="display: flex; flex-direction: column;">
+                <label for="contact-volume" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Avg. Monthly Invocations</label>
+                <select id="contact-volume" class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
+                  <option value="low">Under 5 Million</option>
+                  <option value="medium">5M to 50 Million</option>
+                  <option value="high">50M to 500 Million</option>
+                  <option value="enterprise">Over 500 Million</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+              <label for="contact-message" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Describe Your Current Bottlenecks *</label>
+              <textarea id="contact-message" required rows="5" placeholder="E.g., We suffer from occasional 4-second cold starts inside our Java VPC Lambda cluster, or our database pooling experiences random spikes." class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none; font-family: var(--font-primary); resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem;"><i class="fas fa-calendar-check"></i> Schedule Strategy Call</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: LOCATION GRID & MOCK MAP -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Geographic & Global Presence</h2>
+          <p>We work as a distributed remote consulting model globally, with physical hubs located in tech-heavy capitals.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center;" class="hero-grid">
+          <!-- Text details -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="premium-card" style="text-align: left; align-items: start; padding: 24px; flex-direction: row; gap: 16px;">
+              <div class="card-icon" style="margin-bottom: 0; width: 48px; height: 48px; font-size: 1.25rem;"><i class="fas fa-map-marked-alt"></i></div>
+              <div>
+                <h4 style="margin: 0 0 4px 0;">Consulting Headquarters</h4>
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-muted);">812 Congress Avenue, Austin, TX 78701</p>
+              </div>
+            </div>
+
+            <div class="premium-card" style="text-align: left; align-items: start; padding: 24px; flex-direction: row; gap: 16px;">
+              <div class="card-icon" style="margin-bottom: 0; width: 48px; height: 48px; font-size: 1.25rem;"><i class="fas fa-clock"></i></div>
+              <div>
+                <h4 style="margin: 0 0 4px 0;">Business Hours</h4>
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-muted);">Mon - Fri: 8:00 AM - 6:00 PM CST</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mock Map (Vector visual representation to avoid broken images) -->
+          <div class="premium-card" style="padding: 0; overflow: hidden; height: 250px; background: #e0f2fe; border-color: var(--border-color); position: relative; box-shadow: var(--shadow-md);">
+            <!-- Mock SVG Map Graphic -->
+            <svg viewBox="0 0 800 400" style="width: 100%; height: 100%; opacity: 0.8; background-color: var(--bg-card);">
+              <!-- Land shapes -->
+              <rect width="800" height="400" fill="rgba(6, 182, 212, 0.05)" />
+              <path d="M150,100 Q180,50 300,120 T500,100 T700,140 L750,300 L600,320 L400,280 L200,350 Z" fill="rgba(79, 70, 229, 0.04)" stroke="rgba(79, 70, 229, 0.08)" stroke-width="2"/>
+              <!-- Map grid lines -->
+              <line x1="0" y1="100" x2="800" y2="100" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
+              <line x1="0" y1="200" x2="800" y2="200" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
+              <line x1="0" y1="300" x2="800" y2="300" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
+              <line x1="200" y1="0" x2="200" y2="400" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
+              <line x1="400" y1="0" x2="400" y2="400" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
+              <line x1="600" y1="0" x2="600" y2="400" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
+              
+              <!-- Map Pin Point -->
+              <circle cx="400" cy="200" r="12" fill="var(--accent-color)" opacity="0.3" class="ping-circle" style="animation: ping 1.5s ease-in-out infinite;" />
+              <circle cx="400" cy="200" r="6" fill="var(--secondary-color)" />
+            </svg>
+            <div style="position: absolute; bottom: 15px; right: 15px; background: var(--bg-card); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-size: 0.75rem; font-weight: 600; color: var(--text-heading);">
+              GPS Coordinate: 30.2672° N, 97.7431° W
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-container" style="margin-bottom: 20px;">
+            <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+            <span class="logo-text" style="color: var(--text-light);">Serverless.IO</span>
+          </div>
+          <p>Professional multi-cloud serverless audits, architecture blueprint optimization, and FaaS configuration fine-tuning.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Github"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-topic">
+          <h4>Service Capabilities</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Lambda Auditing</a></li>
+            <li><a href="services.html">Cost Minimization</a></li>
+            <li><a href="services.html">Cold Start Remediation</a></li>
+            <li><a href="services.html">Multi-Cloud Migration</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-topic">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Developer Dashboard</a></li>
+            <li><a href="blog.html">Serverless Insights Blog</a></li>
+            <li><a href="../index.html#calculator">Cost Tuning Slider</a></li>
+            <li><a href="coming-soon.html">Advanced SAM Packs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-topic">
+          <h4>Contact & Info</h4>
+          <ul class="footer-contact">
+            <li><i class="fas fa-envelope"></i> architect@serverless.io</li>
+            <li><i class="fas fa-phone"></i> +1 (555) serverless</li>
+            <li><i class="fas fa-map-marker-alt"></i> Global Remote Consultancy, Austin, TX</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Serverless.IO. All rights reserved. Made by premium design systems.</p>
+        <div style="display: flex; gap: 24px;">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">SLA Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script tags -->
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

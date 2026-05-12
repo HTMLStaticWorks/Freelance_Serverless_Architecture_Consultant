@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Route Not Found - 404 | Serverless.IO</title>
+  <meta name="description" content="The serverless path or configuration file you are looking for has been decommissioned or relocated.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="logo-container" onclick="window.location.href='../index.html'">
+        <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+        <span class="logo-text">Serverless.IO</span>
+      </div>
+
+      <!-- Hamburger menu toggle -->
+      <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Center navigation menu options -->
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="home2.html" class="nav-link">Home 2</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="dashboard.html" class="btn btn-outline" style="padding: 6px 16px; font-size: 0.85rem;">Dashboard</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+          <button class="rtl-toggle">RTL</button>
+          <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+          <a href="login.html" class="btn btn-primary" style="padding: 10px 20px;">Client Portal</a>
+        </div>
+      </nav>
+
+      <!-- Right side headers elements -->
+      <div class="header-actions">
+        <button class="rtl-toggle" aria-label="Toggle Right to Left">RTL</button>
+        <button class="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <a href="login.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.9rem;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="margin-top: var(--header-height);">
+
+    <!-- SECTION 1: ERROR HERO (Simulating a lambda runtime error) -->
+    <section class="section hero-section" style="padding-bottom: 60px;">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="badge" style="background: rgba(239, 68, 68, 0.12); color: var(--danger);"><i class="fas fa-exclamation-triangle"></i> Status Code 404</span>
+          <h1 class="hero-title">API Route <span>Not Found</span></h1>
+          <p class="hero-subtitle">The requested functional path or configuration YAML you are searching for failed to compile. Gateway timed out or resources have been garbage collected.</p>
+          <div class="hero-buttons">
+            <a href="../index.html" class="btn btn-primary">Return to Home</a>
+            <a href="contact.html" class="btn btn-secondary">Report System Issue</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="serverless-graphic" style="border-color: var(--danger);">
+            <div class="graphic-header" style="background: rgba(239, 68, 68, 0.1);">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="graphic-title">error-log.yaml</span>
+            </div>
+            <div class="graphic-content">
+              <span class="code-keyword">Error:</span><br>
+              &nbsp;&nbsp;<span class="code-keyword">Type:</span> <span class="code-string">"RouteNotFoundException"</span><br>
+              &nbsp;&nbsp;<span class="code-keyword">Code:</span> <span class="code-num">404</span><br>
+              &nbsp;&nbsp;<span class="code-keyword">Message:</span> <span class="code-string">"FaaS endpoint has expired or does not exist."</span><br>
+              &nbsp;&nbsp;<span class="code-keyword">TraceId:</span> <span class="code-string">"req-8172c91839a8bc8190"</span><br>
+              &nbsp;&nbsp;<span class="code-keyword">WarmStart:</span> <span class="code-keyword">false</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ALTERNATIVE SITES DIRECTORY -->
+    <section class="section" style="background: rgba(79, 70, 229, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header">
+          <h2>Valid Functional Pathways</h2>
+          <p>Don't stay lost in cold boots. Navigate to our valid, verified platform services instead.</p>
+        </div>
+        
+        <div class="card-grid">
+          <div class="premium-card">
+            <div class="card-img-container">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="Cloud network landing homepage" class="card-img">
+            </div>
+            <div class="card-icon"><i class="fas fa-home"></i></div>
+            <h3 class="card-title">Home Landing</h3>
+            <p class="card-description">Review core portfolios, cost sliders, and lambda diagnostic metrics.</p>
+            <a href="../index.html" class="btn btn-secondary">Go to Home</a>
+          </div>
+          <div class="premium-card">
+            <div class="card-img-container">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Sleek cloud performance telemetry dashboard" class="card-img">
+            </div>
+            <div class="card-icon"><i class="fas fa-tachometer-alt"></i></div>
+            <h3 class="card-title">Client Dashboard</h3>
+            <p class="card-description">Access active optimization project metrics and live log streams.</p>
+            <a href="dashboard.html" class="btn btn-secondary">Go to Dashboard</a>
+          </div>
+          <div class="premium-card">
+            <div class="card-img-container">
+              <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=600&q=80" alt="Software architecture writing blog" class="card-img">
+            </div>
+            <div class="card-icon"><i class="fas fa-book-open"></i></div>
+            <h3 class="card-title">Technical Blog</h3>
+            <p class="card-description">Learn power tuning rules, database proxies, and warm boot settings.</p>
+            <a href="blog.html" class="btn btn-secondary">Go to Blog</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: REPAIR DIAGNOSTICS SEARCH -->
+    <section class="section">
+      <div class="container" style="max-width: 650px; text-align: center;">
+        <div class="section-header">
+          <h2>Search Infrastructure Docs</h2>
+          <p>Query our vast index of AWS SAM template archives, Cloudflare workers scripting guides, and cost-cut telemetry reviews.</p>
+        </div>
+
+        <div class="premium-card" style="padding: 40px; border-color: rgba(6, 182, 212, 0.2);">
+          <form onsubmit="event.preventDefault(); alert('Search capability triggered! (Simulation only)')" style="width: 100%; display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; flex-direction: column; text-align: left;">
+              <input type="text" required placeholder="E.g., AWS SAM nodejs timeout limits" class="form-input" style="width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-search"></i> Query Documents</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-container" style="margin-bottom: 20px;">
+            <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+            <span class="logo-text" style="color: var(--text-light);">Serverless.IO</span>
+          </div>
+          <p>Professional multi-cloud serverless audits, architecture blueprint optimization, and FaaS configuration fine-tuning.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Github"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-topic">
+          <h4>Service Capabilities</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Lambda Auditing</a></li>
+            <li><a href="services.html">Cost Minimization</a></li>
+            <li><a href="services.html">Cold Start Remediation</a></li>
+            <li><a href="services.html">Multi-Cloud Migration</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-topic">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Developer Dashboard</a></li>
+            <li><a href="blog.html">Serverless Insights Blog</a></li>
+            <li><a href="../index.html#calculator">Cost Tuning Slider</a></li>
+            <li><a href="coming-soon.html">Advanced SAM Packs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-topic">
+          <h4>Contact & Info</h4>
+          <ul class="footer-contact">
+            <li><i class="fas fa-envelope"></i> architect@serverless.io</li>
+            <li><i class="fas fa-phone"></i> +1 (555) serverless</li>
+            <li><i class="fas fa-map-marker-alt"></i> Global Remote Consultancy, Austin, TX</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Serverless.IO. All rights reserved. Made by premium design systems.</p>
+        <div style="display: flex; gap: 24px;">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">SLA Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script tags -->
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

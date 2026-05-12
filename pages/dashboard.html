@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Serverless Dashboard | Serverless.IO</title>
+  <meta name="description" content="Manage function pipelines, monitor real-time invocation loads, configure warm thresholds, and fetch SAM files.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+
+  <style>
+    /* ==========================================================================
+       DASHBOARD-SPECIFIC LAYOUT CSS
+       ========================================================================== */
+    body {
+      background: var(--bg-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Fixed, sticky, non-scrolling Header */
+    .dashboard-header {
+      position: fixed;
+      top: 0;
+      left: var(--sidebar-width);
+      width: calc(100% - var(--sidebar-width));
+      height: 70px;
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      transition: all var(--transition-normal);
+    }
+
+    .dashboard-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Hamburger menu toggle - visible on Mobile / Tablet */
+    #dashboard-sidebar-toggle {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: var(--text-heading);
+      cursor: pointer;
+      display: none;
+    }
+
+    .dashboard-header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Profile Pill in sticky header right side */
+    .header-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(6, 182, 212, 0.08);
+      transition: background var(--transition-fast);
+    }
+
+    .header-profile:hover {
+      background: rgba(6, 182, 212, 0.15);
+    }
+
+    .profile-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .profile-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    /* Fixed Left Sidebar (Docked on desktop, off-canvas on mobile) */
+    .dashboard-sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-color);
+      z-index: 950;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      transition: transform var(--transition-normal);
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .sidebar-link i {
+      width: 20px;
+      margin-right: 12px;
+      font-size: 1.1rem;
+    }
+
+    .sidebar-link:hover, .sidebar-link.active {
+      background: rgba(6, 182, 212, 0.08);
+      color: var(--accent-color);
+    }
+
+    .sidebar-link .badge-count {
+      margin-left: auto;
+      background: var(--accent-color);
+      color: var(--primary-color);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 920;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+    }
+
+    .sidebar-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Main Dashboard content display container */
+    .dashboard-main {
+      margin-left: var(--sidebar-width);
+      padding: 100px 30px 40px 30px; /* Space for non-scrolling sticky header */
+      flex: 1;
+      transition: all var(--transition-normal);
+    }
+
+    /* Panel Switching rules */
+    .dashboard-panel {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .dashboard-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Statistics Metric block alignments - Centered Cards */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin: 8px 0;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .stat-sub {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Live terminal logs styling */
+    .terminal-console {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      font-family: monospace;
+      color: #38bdf8;
+      box-shadow: var(--shadow-lg);
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .console-log-area {
+      height: 250px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Input with inside Attach clip icon */
+    .attach-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .attach-input-wrapper input {
+      width: 100%;
+      padding: 14px 44px 14px 16px; /* Leave space on right for paperclip */
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      background: var(--bg-card);
+      color: var(--text-heading);
+      outline: none;
+    }
+
+    .attach-input-wrapper input:focus {
+      border-color: var(--accent-color);
+    }
+
+    .attach-icon-btn {
+      position: absolute;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: color var(--transition-fast);
+    }
+
+    .attach-icon-btn:hover {
+      color: var(--accent-color);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE SETTINGS FOR DASHBOARD LAYOUT
+       ========================================================================== */
+
+    /* Desktop View (1024px to 1440px) */
+    @media (min-width: 1024px) {
+      .dashboard-sidebar {
+        transform: translateX(0); /* Lock always visible */
+      }
+      .dashboard-header {
+        left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+      }
+      .dashboard-main {
+        margin-left: var(--sidebar-width);
+      }
+      #dashboard-sidebar-toggle {
+        display: none; /* Hide mobile toggles */
+      }
+    }
+
+    /* Mobile / Tablet View (360px and 768px) */
+    @media (max-width: 1023px) {
+      .dashboard-sidebar {
+        transform: translateX(-100%); /* Off-canvas drawer */
+      }
+      .dashboard-sidebar.active {
+        transform: translateX(0); /* Slide-in */
+      }
+      .dashboard-header {
+        left: 0;
+        width: 100%;
+        padding: 0 16px;
+      }
+      .dashboard-main {
+        margin-left: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      #dashboard-sidebar-toggle {
+        display: block; /* Hamburger is visible on left of sticky header */
+      }
+      .profile-name {
+        display: none; /* Hide text, keep avatar only to fit screen */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY NON-SCROLLABLE HEADER (Locked top, contains RTL, Theme, and Profile) -->
+  <header class="dashboard-header">
+    <div class="dashboard-header-left">
+      <!-- Hamburger Toggle trigger -->
+      <button id="dashboard-sidebar-toggle" aria-label="Toggle Navigation Drawer">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h2 id="dashboard-view-title" style="margin: 0; font-size: 1.1rem; letter-spacing: 1px; color: var(--text-heading); font-family: var(--font-secondary);">OVERVIEW</h2>
+    </div>
+
+    <!-- Right Side: RTL, Theme, and Avatar Profile -->
+    <div class="dashboard-header-right">
+      <button class="dashboard-rtl-toggle rtl-toggle" style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; cursor: pointer; color: var(--text-heading);">RTL</button>
+      <button class="dashboard-theme-toggle theme-toggle" style="background: var(--bg-card); border: 1px solid var(--border-color); width: 34px; height: 34px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-heading);"><i class="fas fa-moon"></i></button>
+      
+      <!-- Profile Pill container -->
+      <div class="header-profile" onclick="window.location.href='../pages/404.html'">
+        <div class="profile-avatar">JL</div>
+        <span class="profile-name">James Lim</span>
+        <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- FIXED LEFT SIDEBAR (Toggles in Mobile, always visible in Desktop) -->
+  <aside class="dashboard-sidebar">
+    <div class="sidebar-brand" onclick="window.location.href='../index.html'">
+      <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+      <span class="logo-text">Serverless.IO</span>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li>
+        <a class="sidebar-link active" data-tab="overview">
+          <i class="fas fa-chart-pie"></i><span>Overview</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link" data-tab="projects">
+          <i class="fas fa-cubes"></i><span>My Projects</span><span class="badge-count">3</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link" data-tab="upload">
+          <i class="fas fa-cloud-upload-alt"></i><span>Upload Concepts</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link" data-tab="reviews">
+          <i class="fas fa-search-dollar"></i><span>Review Assets</span><span class="badge-count">2</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link" data-tab="revisions">
+          <i class="fas fa-history"></i><span>Revisions</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link" data-tab="downloads">
+          <i class="fas fa-download"></i><span>Downloads</span>
+        </a>
+      </li>
+      <li style="margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+        <a class="sidebar-link" href="../pages/404.html">
+          <i class="fas fa-cog"></i><span>Settings</span>
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-link" href="../index.html" style="color: var(--danger);">
+          <i class="fas fa-sign-out-alt"></i><span>Sign Out</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN DASHBOARD COMPONENT SPACE -->
+  <main class="dashboard-main">
+
+    <!-- TAB PANEL 1: OVERVIEW -->
+    <div id="panel-overview" class="dashboard-panel active">
+      <div class="section-header" style="margin-bottom: 40px;">
+        <h2>Telemetry Diagnostics</h2>
+        <p>Monitor transaction loads, track optimized serverless costs, and view functional warm-up delays across connected cloud nodes.</p>
+      </div>
+
+      <!-- Centered Cards Row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);"><i class="fas fa-chart-line"></i></div>
+          <div class="stat-label">Active Projects</div>
+          <div class="stat-number">3</div>
+          <div class="stat-sub" style="color: var(--success);"><i class="fas fa-caret-up"></i> 1 optimized today</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="card-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);"><i class="fas fa-hourglass-half"></i></div>
+          <div class="stat-label">Pending Reviews</div>
+          <div class="stat-number">2</div>
+          <div class="stat-sub" style="color: var(--warning);"><i class="fas fa-pause"></i> Awaiting audit feedback</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--secondary-color);"><i class="fas fa-history"></i></div>
+          <div class="stat-label">Revisions Used</div>
+          <div class="stat-number">2 / 3</div>
+          <div class="stat-sub" style="color: var(--text-muted);">1 round remaining in SLA</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent-color);"><i class="fas fa-cloud-download-alt"></i></div>
+          <div class="stat-label">Downloads Ready</div>
+          <div class="stat-number">4</div>
+          <div class="stat-sub" style="color: var(--accent-color);"><i class="fas fa-check-circle"></i> Clean SAM configurations</div>
+        </div>
+      </div>
+
+      <!-- Live Log Stream Console -->
+      <div class="terminal-console">
+        <div class="console-header">
+          <span><i class="fas fa-terminal"></i> LIVE SERVERLESS LOG STREAM</span>
+          <span>Status: ACTIVE RUNNING</span>
+        </div>
+        <div id="dashboard-log-stream" class="console-log-area">
+          <div class="log-entry" style="border-left: 3px solid var(--success); padding: 8px 12px; margin-bottom: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.01);">
+            <span>[15:15:35] <strong style="color: var(--accent-color);">AWS-Lambda</strong>: Executing <span style="color: var(--secondary-color);">getDesignsList</span></span>
+            <span><span style="margin-right: 12px; color: var(--text-muted);">45ms | 128MB</span> <span style="color: var(--success); font-weight: 700;">SUCCESS</span></span>
+          </div>
+          <div class="log-entry" style="border-left: 3px solid var(--success); padding: 8px 12px; margin-bottom: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.01);">
+            <span>[15:15:21] <strong style="color: var(--accent-color);">Cloudflare-Worker</strong>: Executing <span style="color: var(--secondary-color);">validateAuthToken</span></span>
+            <span><span style="margin-right: 12px; color: var(--text-muted);">8ms | 128MB</span> <span style="color: var(--success); font-weight: 700;">SUCCESS</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB PANEL 2: MY PROJECTS -->
+    <div id="panel-projects" class="dashboard-panel">
+      <div class="section-header">
+        <h2>Optimized Serverless Clusters</h2>
+        <p>Review the active serverless configurations currently mapped to your SLA optimization portal.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="premium-card">
+          <div class="card-icon"><i class="fab fa-aws"></i></div>
+          <h3 class="card-title">Secured Checkout API</h3>
+          <p class="card-description">Fully decoupled AWS stack executing order calculations and pushing transaction details directly to RDS proxies.</p>
+          <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">ACTIVE OPTIMIZED</span>
+        </div>
+
+        <div class="premium-card">
+          <div class="card-icon"><i class="fab fa-cloudflare"></i></div>
+          <h3 class="card-title">JWT Session Edge Verification</h3>
+          <p class="card-description">Edge deployed token authentications caching customer authorization claims globally using key-value buckets.</p>
+          <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">ACTIVE OPTIMIZED</span>
+        </div>
+
+        <div class="premium-card">
+          <div class="card-icon"><i class="fab fa-google"></i></div>
+          <h3 class="card-title">Bulk Report Processing</h3>
+          <p class="card-description">GCP pipeline running triggers to process heavy analytical databases inside Google Pub/Sub pipelines.</p>
+          <span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">AWAITING AUDIT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB PANEL 3: UPLOAD CONCEPTS -->
+    <div id="panel-upload" class="dashboard-panel">
+      <div class="section-header" style="margin-bottom: 40px;">
+        <h2>Upload Configuration Files</h2>
+        <p>Upload your cloud structure logs or code formats to run them through our power tuner algorithms.</p>
+      </div>
+
+      <div class="premium-card" style="padding: 60px 40px; border-style: dashed; border-width: 2px;">
+        <div class="card-icon" style="width: 80px; height: 80px; font-size: 2.5rem;"><i class="fas fa-cloud-upload-alt"></i></div>
+        <h3 class="card-title">Drop SAM, Terraform, or JSON files here</h3>
+        <p class="card-description" style="max-width: 450px;">Drag and drop your infrastructure descriptors. Maximum size: 10MB. Files are verified against compliance schemas locally.</p>
+        <button class="btn btn-primary" onclick="alert('File selector activated (mockup only).')">Browse Files</button>
+      </div>
+    </div>
+
+    <!-- TAB PANEL 4: REVIEW ASSETS -->
+    <div id="panel-reviews" class="dashboard-panel">
+      <div class="section-header">
+        <h2>Assets Under Consultation</h2>
+        <p>Examine configuration structures currently being reviewed by our technical consulting team.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="premium-card">
+          <div class="card-icon"><i class="fas fa-file-code"></i></div>
+          <h3 class="card-title">aws-sam-checkout.yaml</h3>
+          <p class="card-description">Uploaded on 2026-05-12. Reviewing memory provisioning boundaries and security headers.</p>
+          <span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">IN PROGRESS REVIEW</span>
+        </div>
+
+        <div class="premium-card">
+          <div class="card-icon"><i class="fas fa-file-code"></i></div>
+          <h3 class="card-title">cloudflare-worker-router.js</h3>
+          <p class="card-description">Uploaded on 2026-05-11. Auditing connection timeouts during active caching sequences.</p>
+          <span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">IN PROGRESS REVIEW</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB PANEL 5: REVISIONS (Contains Inside attach paperclip icon in all responsive views) -->
+    <div id="panel-revisions" class="dashboard-panel">
+      <div class="section-header" style="margin-bottom: 40px;">
+        <h2>Submit Revision Requests</h2>
+        <p>Request architectural updates or specific configuration tuning changes. Submit details using the input below.</p>
+      </div>
+
+      <div class="premium-card" style="padding: 40px; text-align: left; align-items: stretch;">
+        <h3 class="card-title" style="align-self: center; margin-bottom: 24px;"><i class="fas fa-history" style="color: var(--accent-color);"></i> Request Revision Details</h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; text-align: center;">Need to revise parameter allocations? Provide details of the requested changes and submit attachments using the paperclip button inside the box.</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <!-- Custom Input with inside paperclip Attach icon -->
+          <div class="form-group">
+            <label>Detailed Revision Request *</label>
+            <div class="attach-input-wrapper">
+              <input type="text" id="revision-message" placeholder="E.g., Please change memory limits to 2048MB and hook the paperclip file...">
+              <!-- INSIDE paperclip icon button -->
+              <button class="attach-icon-btn" onclick="alert('Attachment clip trigger activated! Select your log files.')" title="Attach file to revision">
+                <i class="fas fa-paperclip"></i>
+              </button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="alert('Revision request sent successfully!')" style="width: 100%;"><i class="fas fa-paper-plane"></i> Submit Revision Request</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB PANEL 6: DOWNLOADS -->
+    <div id="panel-downloads" class="dashboard-panel">
+      <div class="section-header">
+        <h2>Download SAM Template Infrastructure Packs</h2>
+        <p>Fetch tested AWS SAM templates optimized for zero server overhead and minimal bills.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="premium-card">
+          <div class="card-icon"><i class="fas fa-file-archive"></i></div>
+          <h3 class="card-title">API Gateway + Lambda</h3>
+          <p class="card-description">Includes arm64 execution variables, Node.js handlers, and DynamoDB simple keys.</p>
+          <button class="btn btn-primary download-sam-btn" data-design="api-gateway-lambda" style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
+        </div>
+
+        <div class="premium-card">
+          <div class="card-icon"><i class="fas fa-file-archive"></i></div>
+          <h3 class="card-title">SQS Async Trigger Processing</h3>
+          <p class="card-description">Buffering event queues with Python handler triggers and connection parameters.</p>
+          <button class="btn btn-primary download-sam-btn" data-design="sqs-lambda-db" style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
+        </div>
+
+        <div class="premium-card">
+          <div class="card-icon"><i class="fas fa-file-archive"></i></div>
+          <h3 class="card-title">S3 Image triggers</h3>
+          <p class="card-description">Object created bucket events calling Go executable binaries for category triggers.</p>
+          <button class="btn btn-primary download-sam-btn" data-design="s3-trigger" style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Overlay for sliding sidebar on mobile -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/dashboard.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
