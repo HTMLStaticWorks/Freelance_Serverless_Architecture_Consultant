@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Serverless Architecture Consultant | Premium Portfolios & Designs</title>
-  <meta name="description" content="Review high-performance function-as-a-service designs, cold start optimizations, compare serverless costs, and download SAM templates.">
-  
+  <meta name="description"
+    content="Review high-performance function-as-a-service designs, cold start optimizations, compare serverless costs, and download SAM templates.">
+
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- Custom CSS Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/dark-mode.css">
   <link rel="stylesheet" href="assets/css/rtl.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 </head>
+
 <body>
 
   <!-- HEADER -->
@@ -39,13 +45,15 @@
           <li><a href="pages/blog.html" class="nav-link">Blog</a></li>
           <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
           <!-- Dashboard option in the center-right side -->
-          <li><a href="pages/dashboard.html" class="btn btn-outline" style="padding: 6px 16px; font-size: 0.85rem;">Dashboard</a></li>
+          <li><a href="pages/dashboard.html" class="nav-link">Dashboard</a></li>
         </ul>
         <!-- Displayed in Mobile Hamburger Menu only -->
         <div class="mobile-menu-footer">
-          <button class="rtl-toggle">RTL</button>
-          <button class="theme-toggle"><i class="fas fa-moon"></i></button>
-          <a href="pages/login.html" class="btn btn-primary" style="padding: 10px 20px;">Client Portal</a>
+          <div class="footer-actions-row">
+            <button class="rtl-toggle">RTL</button>
+            <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+          </div>
+          <a href="pages/login.html" class="btn btn-primary">Sign In</a>
         </div>
       </nav>
 
@@ -66,7 +74,8 @@
         <div class="hero-content">
           <span class="badge"><i class="fas fa-microchip"></i> Next-Gen Serverless</span>
           <h1 class="hero-title">Architecting <span>Zero-Server</span> High-SLA Systems</h1>
-          <p class="hero-subtitle">Optimize AWS Lambda cold starts, review multi-cloud FaaS designs, compare invocation costs, and download production-ready SAM templates.</p>
+          <p class="hero-subtitle">Optimize AWS Lambda cold starts, review multi-cloud FaaS designs, compare invocation
+            costs, and download production-ready SAM templates.</p>
           <div class="hero-buttons">
             <a href="#calculator" class="btn btn-primary">Compare Cost Metrics</a>
             <a href="pages/services.html" class="btn btn-secondary">Review Our Services</a>
@@ -81,9 +90,12 @@
               <span class="graphic-title">aws-lambda-handler.js</span>
             </div>
             <div class="graphic-content">
-              <span class="code-keyword">const</span> aws = <span class="code-keyword">require</span>(<span class="code-string">'aws-sdk'</span>);<br>
-              <span class="code-keyword">const</span> ddb = <span class="code-keyword">new</span> aws.DynamoDB.DocumentClient();<br><br>
-              <span class="code-keyword">exports</span>.handler = <span class="code-keyword">async</span> (event) => {<br>
+              <span class="code-keyword">const</span> aws = <span class="code-keyword">require</span>(<span
+                class="code-string">'aws-sdk'</span>);<br>
+              <span class="code-keyword">const</span> ddb = <span class="code-keyword">new</span>
+              aws.DynamoDB.DocumentClient();<br><br>
+              <span class="code-keyword">exports</span>.handler = <span class="code-keyword">async</span> (event) =>
+              {<br>
               &nbsp;&nbsp;<span class="code-comment">// Optimized DB connection pooling</span><br>
               &nbsp;&nbsp;<span class="code-keyword">const</span> payload = JSON.parse(event.body);<br>
               &nbsp;&nbsp;<span class="code-keyword">const</span> params = {<br>
@@ -91,7 +103,8 @@
               &nbsp;&nbsp;&nbsp;&nbsp;Item: { id: Date.now(), ...payload }<br>
               &nbsp;&nbsp;};<br>
               &nbsp;&nbsp;<span class="code-keyword">await</span> ddb.put(params).promise();<br>
-              &nbsp;&nbsp;<span class="code-keyword">return</span> { statusCode: <span class="code-num">201</span>, body: <span class="code-string">"Saved"</span> };<br>
+              &nbsp;&nbsp;<span class="code-keyword">return</span> { statusCode: <span class="code-num">201</span>,
+              body: <span class="code-string">"Saved"</span> };<br>
               };
             </div>
           </div>
@@ -104,34 +117,41 @@
       <div class="container">
         <div class="section-header">
           <h2>FaaS Architecture Capabilities</h2>
-          <p>We build production-ready, infinitely scaling cloud structures optimized for security and lowest possible overhead.</p>
+          <p>We build production-ready, infinitely scaling cloud structures optimized for security and lowest possible
+            overhead.</p>
         </div>
         <div class="card-grid">
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="AWS Lambda Network" class="card-img">
+              <img src="https://storage.ghost.io/c/44/aa/44aa21f1-0d3d-432a-9e32-b5ac29045a65/content/images/size/w1200/2025/06/image-1750766228953.jpeg"
+                alt="AWS Lambda Network" class="card-img">
             </div>
             <div class="card-icon"><i class="fab fa-aws"></i></div>
             <h3 class="card-title">AWS Lambda Experts</h3>
-            <p class="card-description">Highly fine-tuned Node.js, Python, and Go Lambdas integrated with API Gateway, SQS, and Cognito.</p>
+            <p class="card-description">Highly fine-tuned Node.js, Python, and Go Lambdas integrated with API Gateway,
+              SQS, and Cognito.</p>
             <a href="pages/services.html" class="btn btn-secondary">Learn More</a>
           </div>
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="GCP Cloud Tech" class="card-img">
+              <img src="https://miro.medium.com/1*qc8G_dWb8_KiN4b45HH5fQ.jpeg"
+                alt="GCP Cloud Tech" class="card-img">
             </div>
             <div class="card-icon"><i class="fab fa-google"></i></div>
             <h3 class="card-title">GCP Cloud Functions</h3>
-            <p class="card-description">Microservices tuned for Pub/Sub events, Cloud Storage triggers, and Cloud Run containers.</p>
+            <p class="card-description">Microservices tuned for Pub/Sub events, Cloud Storage triggers, and Cloud Run
+              containers.</p>
             <a href="pages/services.html" class="btn btn-secondary">Learn More</a>
           </div>
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80" alt="Cloudflare Edge Servers" class="card-img">
+              <img src="https://bobcares.com/wp-content/uploads/2022/11/cworkers.png"
+                alt="Cloudflare Edge Servers" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-cloud"></i></div>
             <h3 class="card-title">Cloudflare Workers</h3>
-            <p class="card-description">Edge-deployed serverless scripting with sub-millisecond cold starts and global KV data caching.</p>
+            <p class="card-description">Edge-deployed serverless scripting with sub-millisecond cold starts and global
+              KV data caching.</p>
             <a href="pages/services.html" class="btn btn-secondary">Learn More</a>
           </div>
         </div>
@@ -139,24 +159,28 @@
     </section>
 
     <!-- SECTION 3: INTERACTIVE SERVERLESS COST COMPARISON -->
-    <section class="section" id="calculator" style="background: rgba(79, 70, 229, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section class="section" id="calculator"
+      style="background: rgba(79, 70, 229, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
       <div class="container">
         <div class="section-header">
           <h2>Serverless Cost Comparison Calculator</h2>
-          <p>Estimate and compare monthly cloud invocation costs across global providers to find the most cost-efficient route.</p>
+          <p>Estimate and compare monthly cloud invocation costs across global providers to find the most cost-efficient
+            route.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;" class="hero-grid">
+        <div class="hero-grid" style="gap: 48px; align-items: stretch;">
           <!-- Control Sliders -->
           <div class="premium-card" style="text-align: left; align-items: stretch; justify-content: start;">
-            <h3 class="card-title" style="align-self: center; margin-bottom: 30px;"><i class="fas fa-sliders-h" style="color: var(--accent-color);"></i> Adjust Execution Parameters</h3>
-            
+            <h3 class="card-title" style="align-self: center; margin-bottom: 30px;"><i class="fas fa-sliders-h"
+                style="color: var(--accent-color);"></i> Adjust Execution Parameters</h3>
+
             <div style="margin-bottom: 24px;" class="calc-slider-header">
               <div style="display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 8px;">
                 <label for="calc-memory">Allocated Memory</label>
                 <span style="color: var(--accent-color);"><span id="val-memory">512</span> MB</span>
               </div>
-              <input type="range" id="calc-memory" min="128" max="10240" step="128" value="512" style="width: 100%; height: 6px; border-radius: var(--radius-full); accent-color: var(--accent-color);">
+              <input type="range" id="calc-memory" min="128" max="10240" step="128" value="512"
+                style="width: 100%; height: 6px; border-radius: var(--radius-full); accent-color: var(--accent-color);">
             </div>
 
             <div style="margin-bottom: 24px;" class="calc-slider-header">
@@ -164,7 +188,8 @@
                 <label for="calc-duration">Average Execution Duration</label>
                 <span style="color: var(--accent-color);"><span id="val-duration">250</span> ms</span>
               </div>
-              <input type="range" id="calc-duration" min="10" max="15000" step="10" value="250" style="width: 100%; height: 6px; border-radius: var(--radius-full); accent-color: var(--accent-color);">
+              <input type="range" id="calc-duration" min="10" max="15000" step="10" value="250"
+                style="width: 100%; height: 6px; border-radius: var(--radius-full); accent-color: var(--accent-color);">
             </div>
 
             <div style="margin-bottom: 24px;" class="calc-slider-header">
@@ -172,50 +197,65 @@
                 <label for="calc-invocations">Monthly Invocations</label>
                 <span style="color: var(--accent-color);"><span id="val-invocations">15</span> M</span>
               </div>
-              <input type="range" id="calc-invocations" min="1" max="500" step="1" value="15" style="width: 100%; height: 6px; border-radius: var(--radius-full); accent-color: var(--accent-color);">
+              <input type="range" id="calc-invocations" min="1" max="500" step="1" value="15"
+                style="width: 100%; height: 6px; border-radius: var(--radius-full); accent-color: var(--accent-color);">
             </div>
           </div>
 
           <!-- Price comparison outputs -->
           <div style="display: flex; flex-direction: column; gap: 16px;">
-            <div class="premium-card" style="padding: 20px; flex-direction: row; justify-content: space-between; text-align: left; align-items: center; border-left: 4px solid #ff9900;">
+            <div class="premium-card"
+              style="padding: 20px; flex-direction: row; justify-content: space-between; text-align: left; align-items: center; border-left: 4px solid #ff9900;">
               <div>
                 <h4 style="margin: 0;"><i class="fab fa-aws" style="color: #ff9900;"></i> AWS Lambda</h4>
-                <div style="width: 100px; background: var(--border-color); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
-                  <div id="bar-aws" style="background: #ff9900; height: 100%; width: 40%; transition: width 0.3s ease;"></div>
+                <div
+                  style="width: 100px; background: var(--border-color); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                  <div id="bar-aws" style="background: #ff9900; height: 100%; width: 40%; transition: width 0.3s ease;">
+                  </div>
                 </div>
               </div>
               <span id="cost-aws" style="font-size: 1.75rem; font-weight: 800; color: var(--text-heading);">$0.00</span>
             </div>
 
-            <div class="premium-card" style="padding: 20px; flex-direction: row; justify-content: space-between; text-align: left; align-items: center; border-left: 4px solid #4285f4;">
+            <div class="premium-card"
+              style="padding: 20px; flex-direction: row; justify-content: space-between; text-align: left; align-items: center; border-left: 4px solid #4285f4;">
               <div>
                 <h4 style="margin: 0;"><i class="fab fa-google" style="color: #4285f4;"></i> GCP Cloud Functions</h4>
-                <div style="width: 100px; background: var(--border-color); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
-                  <div id="bar-gcp" style="background: #4285f4; height: 100%; width: 50%; transition: width 0.3s ease;"></div>
+                <div
+                  style="width: 100px; background: var(--border-color); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                  <div id="bar-gcp" style="background: #4285f4; height: 100%; width: 50%; transition: width 0.3s ease;">
+                  </div>
                 </div>
               </div>
               <span id="cost-gcp" style="font-size: 1.75rem; font-weight: 800; color: var(--text-heading);">$0.00</span>
             </div>
 
-            <div class="premium-card" style="padding: 20px; flex-direction: row; justify-content: space-between; text-align: left; align-items: center; border-left: 4px solid #0078d4;">
+            <div class="premium-card"
+              style="padding: 20px; flex-direction: row; justify-content: space-between; text-align: left; align-items: center; border-left: 4px solid #0078d4;">
               <div>
                 <h4 style="margin: 0;"><i class="fas fa-cloud" style="color: #0078d4;"></i> Azure Functions</h4>
-                <div style="width: 100px; background: var(--border-color); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
-                  <div id="bar-azure" style="background: #0078d4; height: 100%; width: 30%; transition: width 0.3s ease;"></div>
+                <div
+                  style="width: 100px; background: var(--border-color); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                  <div id="bar-azure"
+                    style="background: #0078d4; height: 100%; width: 30%; transition: width 0.3s ease;"></div>
                 </div>
               </div>
-              <span id="cost-azure" style="font-size: 1.75rem; font-weight: 800; color: var(--text-heading);">$0.00</span>
+              <span id="cost-azure"
+                style="font-size: 1.75rem; font-weight: 800; color: var(--text-heading);">$0.00</span>
             </div>
 
-            <div class="premium-card" style="padding: 20px; flex-direction: row; justify-content: space-between; text-align: left; align-items: center; border-left: 4px solid #f38020;">
+            <div class="premium-card"
+              style="padding: 20px; flex-direction: row; justify-content: space-between; text-align: left; align-items: center; border-left: 4px solid #f38020;">
               <div>
                 <h4 style="margin: 0;"><i class="fab fa-cloudflare" style="color: #f38020;"></i> Cloudflare Workers</h4>
-                <div style="width: 100px; background: var(--border-color); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
-                  <div id="bar-cloudflare" style="background: #f38020; height: 100%; width: 10%; transition: width 0.3s ease;"></div>
+                <div
+                  style="width: 100px; background: var(--border-color); height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                  <div id="bar-cloudflare"
+                    style="background: #f38020; height: 100%; width: 10%; transition: width 0.3s ease;"></div>
                 </div>
               </div>
-              <span id="cost-cloudflare" style="font-size: 1.75rem; font-weight: 800; color: var(--text-heading);">$5.00</span>
+              <span id="cost-cloudflare"
+                style="font-size: 1.75rem; font-weight: 800; color: var(--text-heading);">$5.00</span>
             </div>
           </div>
         </div>
@@ -227,18 +267,21 @@
       <div class="container">
         <div class="section-header">
           <h2>Serverless Architecture Blueprints</h2>
-          <p>Get ready-to-deploy, verified infrastructure blueprints. Instantly download AWS SAM templates for each standard pattern.</p>
+          <p>Get ready-to-deploy, verified infrastructure blueprints. Instantly download AWS SAM templates for each
+            standard pattern.</p>
         </div>
 
         <div class="card-grid">
           <!-- Design 1 -->
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="REST API Gateway servers" class="card-img">
+              <img src="https://images.ctfassets.net/23aumh6u8s0i/47YDn2tfKoPbl5SxJs7tF3/381f31c322ad0771b752aa99c422b001/Uploaded_from_Protecting_REST_APIs_Behind_AWS_API_Gateway"
+                alt="REST API Gateway servers" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-network-wired"></i></div>
             <h3 class="card-title">Secured REST API Gateway</h3>
-            <p class="card-description">API Gateway mapping HTTPS payloads directly to arm64 Node.js Lambdas with DynamoDB persistence.</p>
+            <p class="card-description">API Gateway mapping HTTPS payloads directly to arm64 Node.js Lambdas with
+              DynamoDB persistence.</p>
             <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px; width: 100%;">
               <button class="btn btn-primary download-sam-btn" data-design="api-gateway-lambda">
                 <i class="fas fa-download"></i> Download SAM Template
@@ -249,11 +292,13 @@
           <!-- Design 2 -->
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Queue processing code matrix" class="card-img">
+              <img src="https://miro.medium.com/1*QnMyNAHU_33qgIRyPW8fmg.png"
+                alt="Queue processing code matrix" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-mail-bulk"></i></div>
             <h3 class="card-title">Async Queue Task Processor</h3>
-            <p class="card-description">SQS Queue buffering heavy requests with Python Lambdas updating databases asynchronously.</p>
+            <p class="card-description">SQS Queue buffering heavy requests with Python Lambdas updating databases
+              asynchronously.</p>
             <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px; width: 100%;">
               <button class="btn btn-primary download-sam-btn" data-design="sqs-lambda-db">
                 <i class="fas fa-download"></i> Download SAM Template
@@ -264,11 +309,13 @@
           <!-- Design 3 -->
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=600&q=80" alt="Robotics Image Recognition abstract" class="card-img">
+              <img src="https://miro.medium.com/v2/resize:fit:1358/format:webp/0*8vJRqr5jIs1pBLTP"
+                alt="Robotics Image Recognition abstract" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-images"></i></div>
-            <h3 class="card-title">S3 Image Trigger Recognition</h3>
-            <p class="card-description">Bucket listener triggers Go binary Lambda processing image categorization through AWS Rekognition.</p>
+            <h3 class="card-title">S3 Image Trigger Artificial Intellegence</h3>
+            <p class="card-description">Bucket listener triggers Go binary Lambda processing image categorization
+              through AWS Rekognition.</p>
             <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px; width: 100%;">
               <button class="btn btn-primary download-sam-btn" data-design="s3-trigger">
                 <i class="fas fa-download"></i> Download SAM Template
@@ -280,21 +327,26 @@
     </section>
 
     <!-- SECTION 5: COLD START OPTIMIZATION SUITE -->
-    <section class="section" style="background: rgba(6, 182, 212, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <section class="section"
+      style="background: rgba(6, 182, 212, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
       <div class="container">
         <div class="section-header">
           <h2>Cold Start Optimizer Tool</h2>
-          <p>Vary runtime choices and connection properties to evaluate exact impact on Serverless Cold Starts in real time.</p>
+          <p>Vary runtime choices and connection properties to evaluate exact impact on Serverless Cold Starts in real
+            time.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px;" class="hero-grid">
+        <div class="hero-grid" style="gap: 48px; align-items: stretch;">
           <!-- Configuration -->
           <div class="premium-card" style="text-align: left; align-items: stretch; justify-content: start;">
-            <h3 class="card-title" style="align-self: center; margin-bottom: 30px;"><i class="fas fa-tachometer-alt" style="color: var(--accent-color);"></i> Settings Panel</h3>
-            
+            <h3 class="card-title" style="align-self: center; margin-bottom: 30px;"><i class="fas fa-tachometer-alt"
+                style="color: var(--accent-color);"></i> Settings Panel</h3>
+
             <div style="margin-bottom: 24px;">
-              <label for="opt-runtime" style="font-weight: 600; display: block; margin-bottom: 8px;">Function Runtime Language</label>
-              <select id="opt-runtime" style="width: 100%; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-heading); font-family: var(--font-primary);">
+              <label for="opt-runtime" style="font-weight: 600; display: block; margin-bottom: 8px;">Function Runtime
+                Language</label>
+              <select id="opt-runtime"
+                style="width: 100%; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-heading); font-family: var(--font-primary);">
                 <option value="nodejs">Node.js (Optimized V8)</option>
                 <option value="python">Python (Light Interpreter)</option>
                 <option value="go">Go (Compiled Executable)</option>
@@ -313,26 +365,34 @@
 
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <div>
-                <label for="opt-provision" style="font-weight: 600; display: block;">Enable Provisioned Concurrency</label>
-                <span style="font-size: 0.8rem; color: var(--text-muted);">Keeps execution warm with zero boot times</span>
+                <label for="opt-provision" style="font-weight: 600; display: block;">Enable Provisioned
+                  Concurrency</label>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Keeps execution warm with zero boot
+                  times</span>
               </div>
-              <input type="checkbox" id="opt-provision" style="width: 24px; height: 24px; accent-color: var(--accent-color);">
+              <input type="checkbox" id="opt-provision"
+                style="width: 24px; height: 24px; accent-color: var(--accent-color);">
             </div>
           </div>
 
           <!-- Response Visual representation -->
           <div class="premium-card" style="justify-content: space-between;">
             <div style="width: 100%;">
-              <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">Simulator Active</span>
+              <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">Simulator
+                Active</span>
               <h3 style="margin-top: 12px; font-size: 2rem;">Estimated Warm-up Delay</h3>
-              <div id="cold-start-time" style="font-size: 4rem; font-weight: 800; color: var(--text-heading); margin: 20px 0;">220 ms</div>
-              
-              <div style="width: 100%; background: var(--border-color); height: 16px; border-radius: 8px; overflow: hidden; margin-bottom: 24px;">
-                <div id="timeline-bar" style="background: var(--success); height: 100%; width: 20%; transition: all 0.4s ease;"></div>
+              <div id="cold-start-time"
+                style="font-size: 4rem; font-weight: 800; color: var(--text-heading); margin: 20px 0;">220 ms</div>
+
+              <div
+                style="width: 100%; background: var(--border-color); height: 16px; border-radius: 8px; overflow: hidden; margin-bottom: 24px;">
+                <div id="timeline-bar"
+                  style="background: var(--success); height: 100%; width: 20%; transition: all 0.4s ease;"></div>
               </div>
             </div>
 
-            <div id="opt-recommendation" style="background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.1); border-radius: var(--radius-md); padding: 20px; text-align: left; font-size: 0.95rem; line-height: 1.6;">
+            <div id="opt-recommendation"
+              style="background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.1); border-radius: var(--radius-md); padding: 20px; text-align: left; font-size: 0.95rem; line-height: 1.6;">
               <!-- Javascript injects recommendations -->
             </div>
           </div>
@@ -345,20 +405,30 @@
       <div class="container" style="text-align: center;">
         <div class="section-header">
           <h2>Ready to Tune Your Serverless Stack?</h2>
-          <p>Book a diagnostic session. We analyze your logs, optimize warm-up latency, and slash provider bills by up to 60%.</p>
+          <p>Book a diagnostic session. We analyze your logs, optimize warm-up latency, and slash provider bills by up
+            to 60%.</p>
         </div>
 
         <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 60px;">
-          <a href="pages/contact.html" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Book Architecture Audit</a>
-          <a href="pages/dashboard.html" class="btn btn-secondary"><i class="fas fa-chart-line"></i> Launch Dev Dashboard</a>
+          <a href="pages/contact.html" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Book Architecture
+            Audit</a>
+          <a href="pages/dashboard.html" class="btn btn-secondary"><i class="fas fa-chart-line"></i> Launch Dev
+            Dashboard</a>
         </div>
 
-        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 30px;">Trusted by High-Scale DevOps Teams</p>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; opacity: 0.6;">
-          <span style="font-weight: 700; font-size: 1.4rem; font-family: var(--font-secondary);"><i class="fab fa-amazon"></i> AMZN DEVOPS</span>
-          <span style="font-weight: 700; font-size: 1.4rem; font-family: var(--font-secondary);"><i class="fab fa-atlassian"></i> JIRA CLOUD</span>
-          <span style="font-weight: 700; font-size: 1.4rem; font-family: var(--font-secondary);"><i class="fab fa-slack"></i> SLACK SCALE</span>
-          <span style="font-weight: 700; font-size: 1.4rem; font-family: var(--font-secondary);"><i class="fab fa-stripe"></i> STRIPE FAAS</span>
+        <p
+          style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 30px;">
+          Trusted by High-Scale DevOps Teams</p>
+        <div
+          style="display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; opacity: 0.6;">
+          <span style="font-weight: 700; font-size: 1.4rem; font-family: var(--font-secondary);"><i
+              class="fab fa-amazon"></i> AMZN DEVOPS</span>
+          <span style="font-weight: 700; font-size: 1.4rem; font-family: var(--font-secondary);"><i
+              class="fab fa-atlassian"></i> JIRA CLOUD</span>
+          <span style="font-weight: 700; font-size: 1.4rem; font-family: var(--font-secondary);"><i
+              class="fab fa-slack"></i> SLACK SCALE</span>
+          <span style="font-weight: 700; font-size: 1.4rem; font-family: var(--font-secondary);"><i
+              class="fab fa-stripe"></i> STRIPE FAAS</span>
         </div>
       </div>
     </section>
@@ -372,13 +442,14 @@
         <div class="footer-brand">
           <div class="logo-container" style="margin-bottom: 20px;">
             <div class="logo-icon"><i class="fas fa-bolt"></i></div>
-            <span class="logo-text" style="color: var(--text-light);">Serverless.IO</span>
+            <span class="logo-text">Serverless.IO</span>
           </div>
-          <p>Professional multi-cloud serverless audits, architecture blueprint optimization, and FaaS configuration fine-tuning.</p>
+          <p>Professional multi-cloud serverless audits, architecture blueprint optimization, and FaaS configuration
+            fine-tuning.</p>
           <div class="footer-socials">
             <a href="#" class="social-link" aria-label="Github"><i class="fab fa-github"></i></a>
             <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-apple"></i></a>
           </div>
         </div>
 
@@ -425,4 +496,5 @@
   <!-- Script tags -->
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>

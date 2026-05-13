@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Client Serverless Dashboard | Serverless.IO</title>
-  <meta name="description" content="Manage function pipelines, monitor real-time invocation loads, configure warm thresholds, and fetch SAM files.">
-  
+  <meta name="description"
+    content="Manage function pipelines, monitor real-time invocation loads, configure warm thresholds, and fetch SAM files.">
+
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <!-- Custom CSS Stylesheets -->
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/dark-mode.css">
   <link rel="stylesheet" href="../assets/css/rtl.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 
   <style>
     /* ==========================================================================
@@ -60,10 +65,33 @@
       display: none;
     }
 
-    .dashboard-header-right {
+    .dashboard-rtl-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      height: 40px;
+      padding: 0 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-heading);
       display: flex;
       align-items: center;
-      gap: 20px;
+      justify-content: center;
+    }
+
+    .dashboard-theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-heading);
+      font-size: 1rem;
     }
 
     /* Profile Pill in sticky header right side */
@@ -72,7 +100,8 @@
       align-items: center;
       gap: 12px;
       cursor: pointer;
-      padding: 6px 12px;
+      height: 40px;
+      padding: 0 16px;
       border-radius: var(--radius-full);
       background: rgba(6, 182, 212, 0.08);
       transition: background var(--transition-fast);
@@ -83,8 +112,8 @@
     }
 
     .profile-avatar {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
       color: var(--text-light);
@@ -92,7 +121,7 @@
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     .profile-name {
@@ -152,7 +181,8 @@
       font-size: 1.1rem;
     }
 
-    .sidebar-link:hover, .sidebar-link.active {
+    .sidebar-link:hover,
+    .sidebar-link.active {
       background: rgba(6, 182, 212, 0.08);
       color: var(--accent-color);
     }
@@ -189,7 +219,8 @@
     /* Main Dashboard content display container */
     .dashboard-main {
       margin-left: var(--sidebar-width);
-      padding: 100px 30px 40px 30px; /* Space for non-scrolling sticky header */
+      padding: 100px 30px 40px 30px;
+      /* Space for non-scrolling sticky header */
       flex: 1;
       transition: all var(--transition-normal);
     }
@@ -205,8 +236,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Statistics Metric block alignments - Centered Cards */
@@ -252,8 +290,8 @@
 
     /* Live terminal logs styling */
     .terminal-console {
-      background: #0f172a;
-      border: 1px solid #1e293b;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
       padding: 24px;
       font-family: monospace;
@@ -266,7 +304,7 @@
     .console-header {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #1e293b;
+      border-bottom: 1px solid var(--border-color);
       padding-bottom: 12px;
       margin-bottom: 16px;
       font-size: 0.8rem;
@@ -291,7 +329,8 @@
 
     .attach-input-wrapper input {
       width: 100%;
-      padding: 14px 44px 14px 16px; /* Leave space on right for paperclip */
+      padding: 14px 44px 14px 16px;
+      /* Leave space on right for paperclip */
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       font-size: 0.95rem;
@@ -326,47 +365,131 @@
     /* Desktop View (1024px to 1440px) */
     @media (min-width: 1024px) {
       .dashboard-sidebar {
-        transform: translateX(0); /* Lock always visible */
+        transform: translateX(0);
+        /* Lock always visible */
       }
+
       .dashboard-header {
         left: var(--sidebar-width);
         width: calc(100% - var(--sidebar-width));
       }
+
       .dashboard-main {
         margin-left: var(--sidebar-width);
       }
+
       #dashboard-sidebar-toggle {
-        display: none; /* Hide mobile toggles */
+        display: none;
+        /* Hide mobile toggles */
       }
     }
 
     /* Mobile / Tablet View (360px and 768px) */
     @media (max-width: 1023px) {
       .dashboard-sidebar {
-        transform: translateX(-100%); /* Off-canvas drawer */
+        transform: translateX(-100%);
+        /* Off-canvas drawer */
       }
+
       .dashboard-sidebar.active {
-        transform: translateX(0); /* Slide-in */
+        transform: translateX(0);
+        /* Slide-in */
       }
+
       .dashboard-header {
         left: 0;
         width: 100%;
         padding: 0 16px;
       }
+
       .dashboard-main {
         margin-left: 0;
         padding-left: 16px;
         padding-right: 16px;
       }
+
       #dashboard-sidebar-toggle {
-        display: block; /* Hamburger is visible on left of sticky header */
+        display: block;
+        /* Hamburger is visible on left of sticky header */
       }
+
       .profile-name {
-        display: none; /* Hide text, keep avatar only to fit screen */
+        display: none;
+        /* Hide text, keep avatar only to fit screen */
+      }
+    }
+
+    .dashboard-header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Extra Small Devices (360px) Header Optimization */
+    @media (max-width: 400px) {
+      .dashboard-header {
+        padding: 0 8px;
+        height: 60px;
+      }
+      .dashboard-header-right {
+        gap: 6px;
+      }
+      .dashboard-header-left {
+        gap: 6px;
+      }
+      .dashboard-rtl-toggle {
+        height: 32px !important;
+        display: flex !important;
+        align-items: center !important;
+        padding: 0 10px !important;
+        font-size: 0.7rem !important;
+      }
+      .dashboard-theme-toggle {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.8rem !important;
+      }
+      .header-profile {
+        height: 32px !important;
+        padding: 0 4px !important;
+        gap: 2px !important;
+      }
+      .profile-avatar {
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 0.7rem !important;
+      }
+      #dashboard-view-title {
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+      }
+    }
+
+    /* Responsive Grid Centering Overrides */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #panel-overview .stats-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      #panel-overview .stats-row .stat-card:nth-child(4) {
+        grid-column: 2; /* Center the 4th card in a 3-column grid */
+      }
+    }
+
+    @media (min-width: 1024px) {
+      #panel-projects .card-grid,
+      #panel-downloads .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      #panel-projects .card-grid .premium-card:nth-child(3),
+      #panel-downloads .card-grid .premium-card:nth-child(3) {
+        grid-column: span 2;
+        width: calc(50% - 12px);
+        margin: 0 auto;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- STICKY NON-SCROLLABLE HEADER (Locked top, contains RTL, Theme, and Profile) -->
@@ -376,14 +499,16 @@
       <button id="dashboard-sidebar-toggle" aria-label="Toggle Navigation Drawer">
         <i class="fas fa-bars"></i>
       </button>
-      <h2 id="dashboard-view-title" style="margin: 0; font-size: 1.1rem; letter-spacing: 1px; color: var(--text-heading); font-family: var(--font-secondary);">OVERVIEW</h2>
+      <h2 id="dashboard-view-title"
+        style="margin: 0; font-size: 1.4rem; letter-spacing: 1px; color: var(--text-heading); font-family: var(--font-secondary); font-weight: 800;">
+        OVERVIEW</h2>
     </div>
 
     <!-- Right Side: RTL, Theme, and Avatar Profile -->
     <div class="dashboard-header-right">
-      <button class="dashboard-rtl-toggle rtl-toggle" style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; cursor: pointer; color: var(--text-heading);">RTL</button>
-      <button class="dashboard-theme-toggle theme-toggle" style="background: var(--bg-card); border: 1px solid var(--border-color); width: 34px; height: 34px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-heading);"><i class="fas fa-moon"></i></button>
-      
+      <button class="dashboard-rtl-toggle rtl-toggle">RTL</button>
+      <button class="dashboard-theme-toggle theme-toggle"><i class="fas fa-moon"></i></button>
+
       <!-- Profile Pill container -->
       <div class="header-profile" onclick="window.location.href='../pages/404.html'">
         <div class="profile-avatar">JL</div>
@@ -432,7 +557,7 @@
         </a>
       </li>
       <li style="margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-        <a class="sidebar-link" href="../pages/404.html">
+        <a class="sidebar-link" data-tab="settings">
           <i class="fas fa-cog"></i><span>Settings</span>
         </a>
       </li>
@@ -451,37 +576,44 @@
     <div id="panel-overview" class="dashboard-panel active">
       <div class="section-header" style="margin-bottom: 40px;">
         <h2>Telemetry Diagnostics</h2>
-        <p>Monitor transaction loads, track optimized serverless costs, and view functional warm-up delays across connected cloud nodes.</p>
+        <p>Monitor transaction loads, track optimized serverless costs, and view functional warm-up delays across
+          connected cloud nodes.</p>
       </div>
 
       <!-- Centered Cards Row -->
       <div class="stats-row">
         <div class="stat-card">
-          <div class="card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);"><i class="fas fa-chart-line"></i></div>
+          <div class="card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);"><i
+              class="fas fa-chart-line"></i></div>
           <div class="stat-label">Active Projects</div>
           <div class="stat-number">3</div>
           <div class="stat-sub" style="color: var(--success);"><i class="fas fa-caret-up"></i> 1 optimized today</div>
         </div>
 
         <div class="stat-card">
-          <div class="card-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);"><i class="fas fa-hourglass-half"></i></div>
+          <div class="card-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);"><i
+              class="fas fa-hourglass-half"></i></div>
           <div class="stat-label">Pending Reviews</div>
           <div class="stat-number">2</div>
-          <div class="stat-sub" style="color: var(--warning);"><i class="fas fa-pause"></i> Awaiting audit feedback</div>
+          <div class="stat-sub" style="color: var(--warning);"><i class="fas fa-pause"></i> Awaiting audit feedback
+          </div>
         </div>
 
         <div class="stat-card">
-          <div class="card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--secondary-color);"><i class="fas fa-history"></i></div>
+          <div class="card-icon" style="background: rgba(79, 70, 229, 0.1); color: var(--secondary-color);"><i
+              class="fas fa-history"></i></div>
           <div class="stat-label">Revisions Used</div>
           <div class="stat-number">2 / 3</div>
           <div class="stat-sub" style="color: var(--text-muted);">1 round remaining in SLA</div>
         </div>
 
         <div class="stat-card">
-          <div class="card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent-color);"><i class="fas fa-cloud-download-alt"></i></div>
+          <div class="card-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent-color);"><i
+              class="fas fa-cloud-download-alt"></i></div>
           <div class="stat-label">Downloads Ready</div>
           <div class="stat-number">4</div>
-          <div class="stat-sub" style="color: var(--accent-color);"><i class="fas fa-check-circle"></i> Clean SAM configurations</div>
+          <div class="stat-sub" style="color: var(--accent-color);"><i class="fas fa-check-circle"></i> Clean SAM
+            configurations</div>
         </div>
       </div>
 
@@ -492,13 +624,19 @@
           <span>Status: ACTIVE RUNNING</span>
         </div>
         <div id="dashboard-log-stream" class="console-log-area">
-          <div class="log-entry" style="border-left: 3px solid var(--success); padding: 8px 12px; margin-bottom: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.01);">
-            <span>[15:15:35] <strong style="color: var(--accent-color);">AWS-Lambda</strong>: Executing <span style="color: var(--secondary-color);">getDesignsList</span></span>
-            <span><span style="margin-right: 12px; color: var(--text-muted);">45ms | 128MB</span> <span style="color: var(--success); font-weight: 700;">SUCCESS</span></span>
+          <div class="log-entry"
+            style="border-left: 3px solid var(--success); padding: 8px 12px; margin-bottom: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.01);">
+            <span>[15:15:35] <strong style="color: var(--accent-color);">AWS-Lambda</strong>: Executing <span
+                style="color: var(--secondary-color);">getDesignsList</span></span>
+            <span><span style="margin-right: 12px; color: var(--text-muted);">45ms | 128MB</span> <span
+                style="color: var(--success); font-weight: 700;">SUCCESS</span></span>
           </div>
-          <div class="log-entry" style="border-left: 3px solid var(--success); padding: 8px 12px; margin-bottom: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.01);">
-            <span>[15:15:21] <strong style="color: var(--accent-color);">Cloudflare-Worker</strong>: Executing <span style="color: var(--secondary-color);">validateAuthToken</span></span>
-            <span><span style="margin-right: 12px; color: var(--text-muted);">8ms | 128MB</span> <span style="color: var(--success); font-weight: 700;">SUCCESS</span></span>
+          <div class="log-entry"
+            style="border-left: 3px solid var(--success); padding: 8px 12px; margin-bottom: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.01);">
+            <span>[15:15:21] <strong style="color: var(--accent-color);">Cloudflare-Worker</strong>: Executing <span
+                style="color: var(--secondary-color);">validateAuthToken</span></span>
+            <span><span style="margin-right: 12px; color: var(--text-muted);">8ms | 128MB</span> <span
+                style="color: var(--success); font-weight: 700;">SUCCESS</span></span>
           </div>
         </div>
       </div>
@@ -515,21 +653,26 @@
         <div class="premium-card">
           <div class="card-icon"><i class="fab fa-aws"></i></div>
           <h3 class="card-title">Secured Checkout API</h3>
-          <p class="card-description">Fully decoupled AWS stack executing order calculations and pushing transaction details directly to RDS proxies.</p>
-          <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">ACTIVE OPTIMIZED</span>
+          <p class="card-description">Fully decoupled AWS stack executing order calculations and pushing transaction
+            details directly to RDS proxies.</p>
+          <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">ACTIVE
+            OPTIMIZED</span>
         </div>
 
         <div class="premium-card">
           <div class="card-icon"><i class="fab fa-cloudflare"></i></div>
           <h3 class="card-title">JWT Session Edge Verification</h3>
-          <p class="card-description">Edge deployed token authentications caching customer authorization claims globally using key-value buckets.</p>
-          <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">ACTIVE OPTIMIZED</span>
+          <p class="card-description">Edge deployed token authentications caching customer authorization claims globally
+            using key-value buckets.</p>
+          <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">ACTIVE
+            OPTIMIZED</span>
         </div>
 
         <div class="premium-card">
           <div class="card-icon"><i class="fab fa-google"></i></div>
           <h3 class="card-title">Bulk Report Processing</h3>
-          <p class="card-description">GCP pipeline running triggers to process heavy analytical databases inside Google Pub/Sub pipelines.</p>
+          <p class="card-description">GCP pipeline running triggers to process heavy analytical databases inside Google
+            Pub/Sub pipelines.</p>
           <span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">AWAITING AUDIT</span>
         </div>
       </div>
@@ -543,9 +686,11 @@
       </div>
 
       <div class="premium-card" style="padding: 60px 40px; border-style: dashed; border-width: 2px;">
-        <div class="card-icon" style="width: 80px; height: 80px; font-size: 2.5rem;"><i class="fas fa-cloud-upload-alt"></i></div>
+        <div class="card-icon" style="width: 80px; height: 80px; font-size: 2.5rem;"><i
+            class="fas fa-cloud-upload-alt"></i></div>
         <h3 class="card-title">Drop SAM, Terraform, or JSON files here</h3>
-        <p class="card-description" style="max-width: 450px;">Drag and drop your infrastructure descriptors. Maximum size: 10MB. Files are verified against compliance schemas locally.</p>
+        <p class="card-description" style="max-width: 450px;">Drag and drop your infrastructure descriptors. Maximum
+          size: 10MB. Files are verified against compliance schemas locally.</p>
         <button class="btn btn-primary" onclick="alert('File selector activated (mockup only).')">Browse Files</button>
       </div>
     </div>
@@ -561,15 +706,19 @@
         <div class="premium-card">
           <div class="card-icon"><i class="fas fa-file-code"></i></div>
           <h3 class="card-title">aws-sam-checkout.yaml</h3>
-          <p class="card-description">Uploaded on 2026-05-12. Reviewing memory provisioning boundaries and security headers.</p>
-          <span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">IN PROGRESS REVIEW</span>
+          <p class="card-description">Uploaded on 2026-05-12. Reviewing memory provisioning boundaries and security
+            headers.</p>
+          <span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">IN PROGRESS
+            REVIEW</span>
         </div>
 
         <div class="premium-card">
           <div class="card-icon"><i class="fas fa-file-code"></i></div>
           <h3 class="card-title">cloudflare-worker-router.js</h3>
-          <p class="card-description">Uploaded on 2026-05-11. Auditing connection timeouts during active caching sequences.</p>
-          <span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">IN PROGRESS REVIEW</span>
+          <p class="card-description">Uploaded on 2026-05-11. Auditing connection timeouts during active caching
+            sequences.</p>
+          <span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">IN PROGRESS
+            REVIEW</span>
         </div>
       </div>
     </div>
@@ -578,27 +727,35 @@
     <div id="panel-revisions" class="dashboard-panel">
       <div class="section-header" style="margin-bottom: 40px;">
         <h2>Submit Revision Requests</h2>
-        <p>Request architectural updates or specific configuration tuning changes. Submit details using the input below.</p>
+        <p>Request architectural updates or specific configuration tuning changes. Submit details using the input below.
+        </p>
       </div>
 
       <div class="premium-card" style="padding: 40px; text-align: left; align-items: stretch;">
-        <h3 class="card-title" style="align-self: center; margin-bottom: 24px;"><i class="fas fa-history" style="color: var(--accent-color);"></i> Request Revision Details</h3>
-        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; text-align: center;">Need to revise parameter allocations? Provide details of the requested changes and submit attachments using the paperclip button inside the box.</p>
-        
+        <h3 class="card-title" style="align-self: center; margin-bottom: 24px;"><i class="fas fa-history"
+            style="color: var(--accent-color);"></i> Request Revision Details</h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; text-align: center;">Need to revise
+          parameter allocations? Provide details of the requested changes and submit attachments using the paperclip
+          button inside the box.</p>
+
         <div style="display: flex; flex-direction: column; gap: 20px;">
           <!-- Custom Input with inside paperclip Attach icon -->
           <div class="form-group">
             <label>Detailed Revision Request *</label>
             <div class="attach-input-wrapper">
-              <input type="text" id="revision-message" placeholder="E.g., Please change memory limits to 2048MB and hook the paperclip file...">
+              <input type="text" id="revision-message"
+                placeholder="E.g., Please change memory limits to 2048MB and hook the paperclip file...">
               <!-- INSIDE paperclip icon button -->
-              <button class="attach-icon-btn" onclick="alert('Attachment clip trigger activated! Select your log files.')" title="Attach file to revision">
+              <button class="attach-icon-btn"
+                onclick="alert('Attachment clip trigger activated! Select your log files.')"
+                title="Attach file to revision">
                 <i class="fas fa-paperclip"></i>
               </button>
             </div>
           </div>
 
-          <button class="btn btn-primary" onclick="alert('Revision request sent successfully!')" style="width: 100%;"><i class="fas fa-paper-plane"></i> Submit Revision Request</button>
+          <button class="btn btn-primary" onclick="alert('Revision request sent successfully!')" style="width: 100%;"><i
+              class="fas fa-paper-plane"></i> Submit Revision Request</button>
         </div>
       </div>
     </div>
@@ -614,22 +771,55 @@
         <div class="premium-card">
           <div class="card-icon"><i class="fas fa-file-archive"></i></div>
           <h3 class="card-title">API Gateway + Lambda</h3>
-          <p class="card-description">Includes arm64 execution variables, Node.js handlers, and DynamoDB simple keys.</p>
-          <button class="btn btn-primary download-sam-btn" data-design="api-gateway-lambda" style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
+          <p class="card-description">Includes arm64 execution variables, Node.js handlers, and DynamoDB simple keys.
+          </p>
+          <button class="btn btn-primary download-sam-btn" data-design="api-gateway-lambda"
+            style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
         </div>
 
         <div class="premium-card">
           <div class="card-icon"><i class="fas fa-file-archive"></i></div>
           <h3 class="card-title">SQS Async Trigger Processing</h3>
           <p class="card-description">Buffering event queues with Python handler triggers and connection parameters.</p>
-          <button class="btn btn-primary download-sam-btn" data-design="sqs-lambda-db" style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
+          <button class="btn btn-primary download-sam-btn" data-design="sqs-lambda-db"
+            style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
         </div>
 
         <div class="premium-card">
           <div class="card-icon"><i class="fas fa-file-archive"></i></div>
           <h3 class="card-title">S3 Image triggers</h3>
-          <p class="card-description">Object created bucket events calling Go executable binaries for category triggers.</p>
-          <button class="btn btn-primary download-sam-btn" data-design="s3-trigger" style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
+          <p class="card-description">Object created bucket events calling Go executable binaries for category triggers.
+          </p>
+          <button class="btn btn-primary download-sam-btn" data-design="s3-trigger"
+            style="width: 100%; margin-top: auto;"><i class="fas fa-download"></i> Get Template</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB PANEL 7: SETTINGS -->
+    <div id="panel-settings" class="dashboard-panel">
+      <div class="section-header">
+        <h2>Account & Platform Settings</h2>
+        <p>Configure your diagnostic preferences, alert thresholds, and security credentials.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="premium-card" style="text-align: left; align-items: stretch;">
+          <h3 class="card-title"><i class="fas fa-bell"></i> Notifications</h3>
+          <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+            <span style="color: var(--text-muted);">Critical Cost Alerts</span>
+            <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--accent-color);">
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+            <span style="color: var(--text-muted);">Architecture Review Complete</span>
+            <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--accent-color);">
+          </div>
+        </div>
+
+        <div class="premium-card" style="text-align: left; align-items: stretch;">
+          <h3 class="card-title"><i class="fas fa-shield-alt"></i> API Security</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin: 15px 0;">Manage Read-Only IAM roles and telemetry access tokens safely.</p>
+          <button class="btn btn-secondary" style="width: 100%;">Rotate API Keys</button>
         </div>
       </div>
     </div>
@@ -643,4 +833,5 @@
   <script src="../assets/js/dashboard.js"></script>
   <script src="../assets/js/main.js"></script>
 </body>
+
 </html>

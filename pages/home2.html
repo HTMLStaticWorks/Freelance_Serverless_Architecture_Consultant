@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/dark-mode.css">
   <link rel="stylesheet" href="../assets/css/rtl.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 </head>
 <body>
 
@@ -38,12 +41,14 @@
           <li><a href="services.html" class="nav-link">Services</a></li>
           <li><a href="blog.html" class="nav-link">Blog</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
-          <li><a href="dashboard.html" class="btn btn-outline" style="padding: 6px 16px; font-size: 0.85rem;">Dashboard</a></li>
+          <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
         </ul>
         <div class="mobile-menu-footer">
-          <button class="rtl-toggle">RTL</button>
-          <button class="theme-toggle"><i class="fas fa-moon"></i></button>
-          <a href="login.html" class="btn btn-primary" style="padding: 10px 20px;">Client Portal</a>
+          <div class="footer-actions-row">
+            <button class="rtl-toggle">RTL</button>
+            <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+          </div>
+          <a href="login.html" class="btn btn-primary">Sign In</a>
         </div>
       </nav>
 
@@ -105,7 +110,7 @@
         <div class="card-grid">
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=600&q=80" alt="RDS Database servers" class="card-img">
+              <img src="https://content.cloudthat.com/resources/wp-content/uploads/2024/02/A-Guide-to-Connect-Amazon-RDS-or-Aurora-Instances-with-Amazon-RDS-Proxy.webp" alt="RDS Database servers" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-database"></i></div>
             <h3 class="card-title">RDS Proxy & Pool Controls</h3>
@@ -114,16 +119,16 @@
           </div>
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80" alt="Secured Network VPC" class="card-img">
+              <img src="https://media.licdn.com/dms/image/v2/D4D12AQGENcilnpbZQw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1676298885648?e=2147483647&v=beta&t=fZ8fkRl8OUcrfdAr5P46EDUQl_dTENs43c8WS7sc63g" alt="Secured Network VPC" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3 class="card-title">Secured VPC Configurations</h3>
+            <h3 class="card-title">Secured VPC </h3>
             <p class="card-description">Set up secure subnets with PrivateLink endpoints, maintaining low initialization delays.</p>
             <a href="services.html" class="btn btn-secondary">Review Audit Steps</a>
           </div>
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="AWS X-Ray Auditing telemetry" class="card-img">
+              <img src="https://scalastic.io/assets/img/aws-monitoring-auditing-cloudwatch-xray-cloudtrail-documentation.jpg" alt="AWS X-Ray Auditing telemetry" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-chart-area"></i></div>
             <h3 class="card-title">AWS X-Ray Auditing</h3>
@@ -142,7 +147,7 @@
           <p>Toggle CPU limits to demonstrate the Serverless Paradox: adding memory can drop execution speed so much that total bills actually decrease.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px;" class="hero-grid">
+        <div class="hero-grid" style="gap: 48px; align-items: stretch;">
           <div class="premium-card" style="text-align: left; align-items: stretch; justify-content: start;">
             <h3 class="card-title" style="align-self: center; margin-bottom: 24px;"><i class="fas fa-bolt" style="color: var(--accent-color);"></i> Adjust Allocated Power</h3>
             
@@ -165,14 +170,14 @@
 
           <!-- Dynamic responses -->
           <div class="premium-card" style="justify-content: space-between;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%;">
+            <div class="stats-grid">
               <div style="background: var(--bg-color); border: 1px solid var(--border-color); padding: 20px; border-radius: var(--radius-md);">
-                <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Compute speed</span>
+                <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);"> Speed</span>
                 <div id="tuning-duration" style="font-size: 2rem; font-weight: 800; color: var(--accent-color); margin-top: 8px;">120 ms</div>
               </div>
 
               <div style="background: var(--bg-color); border: 1px solid var(--border-color); padding: 20px; border-radius: var(--radius-md);">
-                <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Billing cost (10M requests)</span>
+                <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">10M requests</span>
                 <div id="tuning-cost" style="font-size: 2rem; font-weight: 800; color: var(--success); margin-top: 8px;">$2.00</div>
               </div>
             </div>
@@ -196,10 +201,10 @@
         <div class="card-grid">
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="DynamoDB Global database networking" class="card-img">
+              <img src="https://media.licdn.com/dms/image/v2/D5622AQFIOcfKrwaBFQ/feedshare-shrink_800/B56ZfDPc6ZHQAo-/0/1751327297564?e=2147483647&v=beta&t=NvzVPUaxM3lbbWxxY3RrhGa7mt18vhDtmyQ3Nr6MP0o" alt="DynamoDB Global database networking" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-globe-americas"></i></div>
-            <h3 class="card-title">Multi-Region DynamoDB Global</h3>
+            <h3 class="card-title">Multi-Region DynamoDB </h3>
             <p class="card-description">Active-Active multi-region database setup utilizing Lambda routers to resolve local regional hits.</p>
             <button class="btn btn-primary download-sam-btn" data-design="s3-trigger" style="width: 100%; margin-top: auto;">
               <i class="fas fa-download"></i> Get SAM Config
@@ -208,10 +213,10 @@
 
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Billing pipeline analytics dashboard" class="card-img">
+              <img src="https://stripe.dev/images/how-we-built-it-real-time-analytics-for-stripe-billing/image-0.jpg" alt="Billing pipeline analytics dashboard" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-            <h3 class="card-title">Real-time Stream billing pipeline</h3>
+            <h3 class="card-title">Real-time Stream  pipeline</h3>
             <p class="card-description">Kinesis Streams capturing transaction inputs, executing Lambdas, and pushing files to Redshift warehouses.</p>
             <button class="btn btn-primary download-sam-btn" data-design="sqs-lambda-db" style="width: 100%; margin-top: auto;">
               <i class="fas fa-download"></i> Get SAM Config
@@ -220,7 +225,7 @@
 
           <div class="premium-card">
             <div class="card-img-container">
-              <img src="https://images.unsplash.com/photo-1601597111158-2fceff270190?auto=format&fit=crop&w=600&q=80" alt="Secure digital user auth authorization" class="card-img">
+              <img src="https://static.wixstatic.com/media/da8eb9_599a74694bae4669806272ab4e954887~mv2.png/v1/fill/w_980,h_736,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/da8eb9_599a74694bae4669806272ab4e954887~mv2.png" alt="Secure digital user auth authorization" class="card-img">
             </div>
             <div class="card-icon"><i class="fas fa-key"></i></div>
             <h3 class="card-title">Cognito Edge User Auth</h3>
@@ -245,11 +250,11 @@
           <table style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead>
               <tr style="border-bottom: 2px solid var(--border-color); color: var(--text-heading); font-weight: 700;">
-                <th style="padding: 16px 8px;">Architecture Runtime</th>
-                <th style="padding: 16px 8px;">Average Execution</th>
-                <th style="padding: 16px 8px;">Cold Start Boot</th>
-                <th style="padding: 16px 8px;">Database Latency</th>
-                <th style="padding: 16px 8px;">Efficiency Rating</th>
+                <th style="padding: 16px 8px;"> Runtime</th>
+                <th style="padding: 16px 8px;"> Execution</th>
+                <th style="padding: 16px 8px;">Begin </th>
+                <th style="padding: 16px 8px;"> Latency</th>
+                <th style="padding: 16px 8px;"> Rating</th>
               </tr>
             </thead>
             <tbody>
@@ -270,16 +275,16 @@
               <tr style="border-bottom: 1px solid var(--border-color);">
                 <td style="padding: 16px 8px; font-weight: 600;"><i class="fab fa-google" style="color: #4285f4; margin-right: 8px;"></i> GCP Cloud Functions (Go/Linux)</td>
                 <td style="padding: 16px 8px;">68ms</td>
-                <td style="padding: 16px 8px; color: var(--warning);">350ms</td>
+                <td style="padding: 16px 8px; color: var(--success);">350ms</td>
                 <td style="padding: 16px 8px;">8ms (Cloud SQL)</td>
-                <td style="padding: 16px 8px;"><span class="badge" style="background: rgba(245, 158, 11, 0.12); color: var(--warning);">Optimal</span></td>
+                <td style="padding: 16px 8px;"><span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);">Excellent</span></td>
               </tr>
               <tr>
                 <td style="padding: 16px 8px; font-weight: 600;"><i class="fab fa-aws" style="color: #ff9900; margin-right: 8px;"></i> AWS Lambda (Java/VPC)</td>
                 <td style="padding: 16px 8px;">180ms</td>
-                <td style="padding: 16px 8px; color: var(--danger);">1200ms</td>
+                <td style="padding: 16px 8px; color: var(--success);">1200ms</td>
                 <td style="padding: 16px 8px;">15ms (No Proxy)</td>
-                <td style="padding: 16px 8px;"><span class="badge" style="background: rgba(239, 68, 68, 0.12); color: var(--danger);">Needs Tuning</span></td>
+                <td style="padding: 16px 8px;"><span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--success);"> Excellent</span></td>
               </tr>
             </tbody>
           </table>
@@ -310,33 +315,34 @@
         <div class="footer-brand">
           <div class="logo-container" style="margin-bottom: 20px;">
             <div class="logo-icon"><i class="fas fa-bolt"></i></div>
-            <span class="logo-text" style="color: var(--text-light);">Serverless.IO</span>
+            <span class="logo-text">Serverless.IO</span>
           </div>
-          <p>Professional multi-cloud serverless audits, architecture blueprint optimization, and FaaS configuration fine-tuning.</p>
+          <p>Professional multi-cloud serverless audits, architecture blueprint optimization, and FaaS configuration
+            fine-tuning.</p>
           <div class="footer-socials">
             <a href="#" class="social-link" aria-label="Github"><i class="fab fa-github"></i></a>
             <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-apple"></i></a>
           </div>
         </div>
 
         <div class="footer-topic">
           <h4>Service Capabilities</h4>
           <ul class="footer-links">
-            <li><a href="services.html">Lambda Auditing</a></li>
-            <li><a href="services.html">Cost Minimization</a></li>
-            <li><a href="services.html">Cold Start Remediation</a></li>
-            <li><a href="services.html">Multi-Cloud Migration</a></li>
+            <li><a href="pages/services.html">Lambda Auditing</a></li>
+            <li><a href="pages/services.html">Cost Minimization</a></li>
+            <li><a href="pages/services.html">Cold Start Remediation</a></li>
+            <li><a href="pages/services.html">Multi-Cloud Migration</a></li>
           </ul>
         </div>
 
         <div class="footer-topic">
           <h4>Resources</h4>
           <ul class="footer-links">
-            <li><a href="dashboard.html">Developer Dashboard</a></li>
-            <li><a href="blog.html">Serverless Insights Blog</a></li>
-            <li><a href="../index.html#calculator">Cost Tuning Slider</a></li>
-            <li><a href="coming-soon.html">Advanced SAM Packs</a></li>
+            <li><a href="pages/dashboard.html">Developer Dashboard</a></li>
+            <li><a href="pages/blog.html">Serverless Insights Blog</a></li>
+            <li><a href="#calculator">Cost Tuning Slider</a></li>
+            <li><a href="pages/coming-soon.html">Advanced SAM Packs</a></li>
           </ul>
         </div>
 
@@ -353,8 +359,8 @@
       <div class="footer-bottom">
         <p>&copy; 2026 Serverless.IO. All rights reserved. Made by premium design systems.</p>
         <div style="display: flex; gap: 24px;">
-          <a href="404.html">Privacy Policy</a>
-          <a href="404.html">SLA Terms</a>
+          <a href="pages/404.html">Privacy Policy</a>
+          <a href="pages/404.html">SLA Terms</a>
         </div>
       </div>
     </div>

@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/dark-mode.css">
   <link rel="stylesheet" href="../assets/css/rtl.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 </head>
 <body>
 
@@ -38,12 +41,14 @@
           <li><a href="services.html" class="nav-link">Services</a></li>
           <li><a href="blog.html" class="nav-link">Blog</a></li>
           <li><a href="contact.html" class="nav-link active">Contact</a></li>
-          <li><a href="dashboard.html" class="btn btn-outline" style="padding: 6px 16px; font-size: 0.85rem;">Dashboard</a></li>
+          <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
         </ul>
         <div class="mobile-menu-footer">
-          <button class="rtl-toggle">RTL</button>
-          <button class="theme-toggle"><i class="fas fa-moon"></i></button>
-          <a href="login.html" class="btn btn-primary" style="padding: 10px 20px;">Client Portal</a>
+          <div class="footer-actions-row">
+            <button class="rtl-toggle">RTL</button>
+            <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+          </div>
+          <a href="login.html" class="btn btn-primary">Sign In</a>
         </div>
       </nav>
 
@@ -91,113 +96,214 @@
       </div>
     </section>
 
-    <!-- SECTION 2: INTERACTIVE CONSULTATION BOOKING FORM -->
-    <section class="section" id="booking" style="background: rgba(79, 70, 229, 0.02); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-      <div class="container" style="max-width: 800px;">
-        <div class="section-header">
-          <h2>Architecture Audit Intake Form</h2>
-          <p>Provide your system parameters below. Our consulting team will review your serverless layouts before our strategy call.</p>
-        </div>
+    <!-- SECTION 2: CONTACT INFORMATION CARDS -->
+    
 
-        <div class="premium-card" style="padding: 40px; text-align: left; align-items: stretch;">
-          <form id="consultation-form" style="display: flex; flex-direction: column; gap: 24px;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="hero-grid">
-              <div style="display: flex; flex-direction: column;">
-                <label for="contact-name" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Engineering Representative *</label>
-                <input type="text" id="contact-name" required placeholder="E.g., Sarah Jenkins" class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
+    <!-- SECTION 3: INTERACTIVE CONSULTATION BOOKING FORM & FAQ ACCORDION -->
+    <section class="section" id="booking">
+      <div class="container">
+        <div class="hero-grid" style="align-items: start;">
+          
+          <!-- LEFT SIDE: FORM -->
+          <div style="width: 100%;">
+            <div class="section-header" style="margin: 0 0 40px 0;">
+              <h2>Architecture Audit Intake Form</h2>
+              <p>Our consulting team will review your serverless layouts before our strategy call.</p>
+            </div>
+            
+            <div class="premium-card" style="padding: 40px; text-align: left; align-items: stretch; border-top: 4px solid var(--accent-color);">
+              <form id="consultation-form" style="display: flex; flex-direction: column; gap: 24px;">
+                <div class="hero-grid" style="gap: 24px; margin-top: 0;">
+                  <div class="form-group">
+                    <label for="contact-name" class="form-label">Engineering Representative *</label>
+                    <input type="text" id="contact-name" required placeholder="Sarah Jenkins" class="form-input">
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email" class="form-label">Corporate Email Address *</label>
+                    <input type="email" id="contact-email" required placeholder="sjenkins@company.com" class="form-input">
+                  </div>
+                </div>
+
+                <div class="hero-grid" style="gap: 24px; margin-top: 0;">
+                  <div class="form-group">
+                    <label for="contact-platform" class="form-label">Active Cloud Provider</label>
+                    <select id="contact-platform" class="form-input">
+                      <option value="aws">AWS Lambda Stack</option>
+                      <option value="gcp">Google Cloud Functions</option>
+                      <option value="cloudflare">Cloudflare Workers</option>
+                      <option value="azure">Azure Functions Platform</option>
+                      <option value="hybrid">Hybrid / Multi-Cloud</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-volume" class="form-label">Avg. Monthly Load</label>
+                    <select id="contact-volume" class="form-input">
+                      <option value="low">Under 5 Million</option>
+                      <option value="medium">5M to 50 Million</option>
+                      <option value="high">50M to 500 Million</option>
+                      <option value="enterprise">Over 500 Million</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-message" class="form-label">Describe Current Bottlenecks *</label>
+                  <textarea id="contact-message" required placeholder="E.g., We suffer from occasional 4-second cold starts inside our Java VPC Lambda cluster..." class="form-input"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-calendar-check"></i> Schedule Strategy Call</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE: FAQ ACCORDION -->
+          <div style="width: 100%;">
+            <div class="section-header" style="margin: 0 0 40px 0;">
+              <h2>Frequently Asked Questions</h2>
+              <p>Quick answers to common questions about our serverless consulting process.</p>
+            </div>
+            
+            <div class="accordion">
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h4>How fast can you start an audit?</h4>
+                  <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Once the intake form is submitted, we typically schedule a kickoff session within 48 business hours to review your architecture blueprints.</p>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h4>Do you work with hybrid clouds?</h4>
+                  <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Absolutely. We specialize in multi-region and multi-cloud serverless networking, including complex setups like AWS Lambda + Cloudflare Workers.</p>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h4>Is there an SLA guarantee?</h4>
+                  <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Our Enterprise and Retainer packages include strict SLA guarantees for system latency remediations and 24/7 technical support response.</p>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h4>What level of access do you require?</h4>
+                  <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>We use Read-Only cross-account IAM roles or temporary session credentials to audit your FaaS configurations and CloudWatch telemetry logs safely.</p>
+                </div>
               </div>
 
-              <div style="display: flex; flex-direction: column;">
-                <label for="contact-email" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Corporate Email Address *</label>
-                <input type="email" id="contact-email" required placeholder="E.g., sjenkins@company.com" class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h4>Do you offer implementation services?</h4>
+                  <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Yes, besides audits, we provide hands-on implementation for AWS SAM, Serverless Framework, and Terraform infrastructure-as-code updates.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h4>What is the typical ROI on an audit?</h4>
+                  <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Most clients see a 30-50% reduction in cloud billing within the first 30 days of implementation by optimizing memory allocations and DB connection pooling.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  <h4>Do you support Pulumi or CDK?</h4>
+                  <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                  <p>Yes, while our default templates are SAM/Terraform, we have extensive experience with Pulumi (TypeScript/Go) and the AWS Cloud Development Kit (CDK).</p>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="hero-grid">
-              <div style="display: flex; flex-direction: column;">
-                <label for="contact-platform" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Active Cloud Provider</label>
-                <select id="contact-platform" class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
-                  <option value="aws">AWS Lambda Stack</option>
-                  <option value="gcp">Google Cloud Functions</option>
-                  <option value="cloudflare">Cloudflare Workers / Edge</option>
-                  <option value="azure">Azure Functions Platform</option>
-                  <option value="hybrid">Hybrid / Multi-Cloud Setup</option>
-                </select>
-              </div>
-
-              <div style="display: flex; flex-direction: column;">
-                <label for="contact-volume" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Avg. Monthly Invocations</label>
-                <select id="contact-volume" class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none;">
-                  <option value="low">Under 5 Million</option>
-                  <option value="medium">5M to 50 Million</option>
-                  <option value="high">50M to 500 Million</option>
-                  <option value="enterprise">Over 500 Million</option>
-                </select>
-              </div>
-            </div>
-
-            <div style="display: flex; flex-direction: column;">
-              <label for="contact-message" style="font-weight: 600; margin-bottom: 8px; color: var(--text-heading);">Describe Your Current Bottlenecks *</label>
-              <textarea id="contact-message" required rows="5" placeholder="E.g., We suffer from occasional 4-second cold starts inside our Java VPC Lambda cluster, or our database pooling experiences random spikes." class="form-input" style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-card); color: var(--text-heading); outline: none; font-family: var(--font-primary); resize: vertical;"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem;"><i class="fas fa-calendar-check"></i> Schedule Strategy Call</button>
-          </form>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: LOCATION GRID & MOCK MAP -->
-    <section class="section">
+    <!-- SECTION 4: LOCATION & REAL MAP -->
+    <section class="section" style="background: rgba(79, 70, 229, 0.02); border-top: 1px solid var(--border-color);">
       <div class="container">
         <div class="section-header">
-          <h2>Geographic & Global Presence</h2>
-          <p>We work as a distributed remote consulting model globally, with physical hubs located in tech-heavy capitals.</p>
+          <h2>Our Global Hubs</h2>
+          <p>Visit our primary engineering offices or reach out to our distributed regional teams.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center;" class="hero-grid">
-          <!-- Text details -->
+        <div class="hero-grid">
           <div style="display: flex; flex-direction: column; gap: 24px;">
-            <div class="premium-card" style="text-align: left; align-items: start; padding: 24px; flex-direction: row; gap: 16px;">
-              <div class="card-icon" style="margin-bottom: 0; width: 48px; height: 48px; font-size: 1.25rem;"><i class="fas fa-map-marked-alt"></i></div>
+            <div class="premium-card" style="text-align: left; align-items: start; padding: 30px; flex-direction: row; gap: 20px;">
+              <div class="card-icon" style="flex-shrink: 0;"><i class="fas fa-map-marker-alt"></i></div>
               <div>
-                <h4 style="margin: 0 0 4px 0;">Consulting Headquarters</h4>
-                <p style="margin: 0; font-size: 0.95rem; color: var(--text-muted);">812 Congress Avenue, Austin, TX 78701</p>
+                <h4 style="margin-bottom: 6px;">Austin Engineering </h4>
+                <p style="font-size: 0.9rem; margin-bottom: 4px;">812 Congress Avenue</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Austin, TX 78701, USA</p>
               </div>
             </div>
-
-            <div class="premium-card" style="text-align: left; align-items: start; padding: 24px; flex-direction: row; gap: 16px;">
-              <div class="card-icon" style="margin-bottom: 0; width: 48px; height: 48px; font-size: 1.25rem;"><i class="fas fa-clock"></i></div>
+            <div class="premium-card" style="text-align: left; align-items: start; padding: 30px; flex-direction: row; gap: 20px;">
+              <div class="card-icon" style="flex-shrink: 0;"><i class="fas fa-phone-alt"></i></div>
               <div>
-                <h4 style="margin: 0 0 4px 0;">Business Hours</h4>
-                <p style="margin: 0; font-size: 0.95rem; color: var(--text-muted);">Mon - Fri: 8:00 AM - 6:00 PM CST</p>
+                <h4 style="margin-bottom: 6px;">Global Mobile Line</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 4px;">+1 (555) SERVERLESS</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Mon-Fri: 9AM - 6PM CST</p>
+              </div>
+            </div>
+            <div class="premium-card" style="text-align: left; align-items: start; padding: 30px; flex-direction: row; gap: 20px;">
+              <div class="card-icon" style="flex-shrink: 0;"><i class="fas fa-envelope-open-text"></i></div>
+              <div>
+                <h4 style="margin-bottom: 6px;">Email Communication</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 4px;">architect@serverless.io</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">24hr Average Response</p>
               </div>
             </div>
           </div>
 
-          <!-- Mock Map (Vector visual representation to avoid broken images) -->
-          <div class="premium-card" style="padding: 0; overflow: hidden; height: 250px; background: #e0f2fe; border-color: var(--border-color); position: relative; box-shadow: var(--shadow-md);">
-            <!-- Mock SVG Map Graphic -->
-            <svg viewBox="0 0 800 400" style="width: 100%; height: 100%; opacity: 0.8; background-color: var(--bg-card);">
-              <!-- Land shapes -->
-              <rect width="800" height="400" fill="rgba(6, 182, 212, 0.05)" />
-              <path d="M150,100 Q180,50 300,120 T500,100 T700,140 L750,300 L600,320 L400,280 L200,350 Z" fill="rgba(79, 70, 229, 0.04)" stroke="rgba(79, 70, 229, 0.08)" stroke-width="2"/>
-              <!-- Map grid lines -->
-              <line x1="0" y1="100" x2="800" y2="100" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
-              <line x1="0" y1="200" x2="800" y2="200" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
-              <line x1="0" y1="300" x2="800" y2="300" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
-              <line x1="200" y1="0" x2="200" y2="400" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
-              <line x1="400" y1="0" x2="400" y2="400" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
-              <line x1="600" y1="0" x2="600" y2="400" stroke="var(--border-color)" stroke-dasharray="4" stroke-width="0.5" />
-              
-              <!-- Map Pin Point -->
-              <circle cx="400" cy="200" r="12" fill="var(--accent-color)" opacity="0.3" class="ping-circle" style="animation: ping 1.5s ease-in-out infinite;" />
-              <circle cx="400" cy="200" r="6" fill="var(--secondary-color)" />
-            </svg>
-            <div style="position: absolute; bottom: 15px; right: 15px; background: var(--bg-card); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-size: 0.75rem; font-weight: 600; color: var(--text-heading);">
-              GPS Coordinate: 30.2672° N, 97.7431° W
-            </div>
+          <!-- Real Working Map Iframe -->
+          <div class="premium-card" style="padding: 0; overflow: hidden; height: 500px; border-color: var(--border-color); box-shadow: var(--shadow-lg);">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.6946654763137!2d-97.74567842345862!3d30.267152974811374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b508a23605c1%3A0xc66512c5b3671f1e!2s812%20Congress%20Ave.%2C%20Austin%2C%20TX%2078701!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: SOCIAL PRESENCE -->
+    <section class="section" style="text-align: center; border-top: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header">
+          <h2>Follow Our Insights</h2>
+          <p>Join the conversation on social platforms for real-time cloud optimization updates.</p>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+          <a href="#" class="social-link" style="font-size: 2.5rem; color: #181717;" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link" style="font-size: 2.5rem; color: #0077b5;" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social-link" style="font-size: 2.5rem; color: #1da1f2;" aria-label="Twitter"><i class="fab fa-x"></i></a>
+          <a href="#" class="social-link" style="font-size: 2.5rem; color: #ff0000;" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
     </section>
@@ -211,33 +317,34 @@
         <div class="footer-brand">
           <div class="logo-container" style="margin-bottom: 20px;">
             <div class="logo-icon"><i class="fas fa-bolt"></i></div>
-            <span class="logo-text" style="color: var(--text-light);">Serverless.IO</span>
+            <span class="logo-text">Serverless.IO</span>
           </div>
-          <p>Professional multi-cloud serverless audits, architecture blueprint optimization, and FaaS configuration fine-tuning.</p>
+          <p>Professional multi-cloud serverless audits, architecture blueprint optimization, and FaaS configuration
+            fine-tuning.</p>
           <div class="footer-socials">
             <a href="#" class="social-link" aria-label="Github"><i class="fab fa-github"></i></a>
             <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-apple"></i></a>
           </div>
         </div>
 
         <div class="footer-topic">
           <h4>Service Capabilities</h4>
           <ul class="footer-links">
-            <li><a href="services.html">Lambda Auditing</a></li>
-            <li><a href="services.html">Cost Minimization</a></li>
-            <li><a href="services.html">Cold Start Remediation</a></li>
-            <li><a href="services.html">Multi-Cloud Migration</a></li>
+            <li><a href="pages/services.html">Lambda Auditing</a></li>
+            <li><a href="pages/services.html">Cost Minimization</a></li>
+            <li><a href="pages/services.html">Cold Start Remediation</a></li>
+            <li><a href="pages/services.html">Multi-Cloud Migration</a></li>
           </ul>
         </div>
 
         <div class="footer-topic">
           <h4>Resources</h4>
           <ul class="footer-links">
-            <li><a href="dashboard.html">Developer Dashboard</a></li>
-            <li><a href="blog.html">Serverless Insights Blog</a></li>
-            <li><a href="../index.html#calculator">Cost Tuning Slider</a></li>
-            <li><a href="coming-soon.html">Advanced SAM Packs</a></li>
+            <li><a href="pages/dashboard.html">Developer Dashboard</a></li>
+            <li><a href="pages/blog.html">Serverless Insights Blog</a></li>
+            <li><a href="#calculator">Cost Tuning Slider</a></li>
+            <li><a href="pages/coming-soon.html">Advanced SAM Packs</a></li>
           </ul>
         </div>
 
@@ -254,8 +361,8 @@
       <div class="footer-bottom">
         <p>&copy; 2026 Serverless.IO. All rights reserved. Made by premium design systems.</p>
         <div style="display: flex; gap: 24px;">
-          <a href="404.html">Privacy Policy</a>
-          <a href="404.html">SLA Terms</a>
+          <a href="pages/404.html">Privacy Policy</a>
+          <a href="pages/404.html">SLA Terms</a>
         </div>
       </div>
     </div>
@@ -263,5 +370,24 @@
 
   <!-- Script tags -->
   <script src="../assets/js/main.js"></script>
+  <script>
+    // Accordion Logic
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items
+        document.querySelectorAll('.accordion-item').forEach(otherItem => {
+          otherItem.classList.remove('active');
+        });
+        
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

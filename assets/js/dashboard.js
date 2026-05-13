@@ -5,77 +5,15 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initDashboardTheming();
-  initDashboardRTL();
   initDashboardSidebar();
   initDashboardNavigation();
   initLiveLogsSimulator();
   initDashboardMetrics();
 });
 
-/* ==========================================================================
-   1. Dashboard Theming
-   ========================================================================== */
-function initDashboardTheming() {
-  const toggles = document.querySelectorAll('.dashboard-theme-toggle');
-  
-  const cachedTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', cachedTheme);
-  updateThemeIcons(cachedTheme);
 
-  toggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const activeTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcons(newTheme);
-    });
-  });
-}
 
-function updateThemeIcons(theme) {
-  const icons = document.querySelectorAll('.dashboard-theme-toggle i');
-  icons.forEach(icon => {
-    if (theme === 'dark') {
-      icon.className = 'fas fa-sun';
-    } else {
-      icon.className = 'fas fa-moon';
-    }
-  });
-}
 
-/* ==========================================================================
-   2. Dashboard RTL Mode
-   ========================================================================== */
-function initDashboardRTL() {
-  const toggles = document.querySelectorAll('.dashboard-rtl-toggle');
-  
-  const cachedRtl = localStorage.getItem('rtl') === 'true';
-  applyDashboardRTL(cachedRtl);
-
-  toggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-      applyDashboardRTL(!isRTL);
-    });
-  });
-}
-
-function applyDashboardRTL(isRTL) {
-  if (isRTL) {
-    document.documentElement.setAttribute('dir', 'rtl');
-    localStorage.setItem('rtl', 'true');
-  } else {
-    document.documentElement.removeAttribute('dir');
-    localStorage.setItem('rtl', 'false');
-  }
-
-  const toggles = document.querySelectorAll('.dashboard-rtl-toggle');
-  toggles.forEach(toggle => {
-    toggle.textContent = isRTL ? 'LTR' : 'RTL';
-  });
-}
 
 /* ==========================================================================
    3. Mobile & Tablet Sidebar Menu Toggle
