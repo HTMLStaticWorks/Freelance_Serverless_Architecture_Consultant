@@ -106,12 +106,6 @@
       align-items: center;
     }
 
-    .form-input-container i {
-      position: absolute;
-      left: 16px;
-      color: var(--text-muted);
-    }
-
     .form-input {
       width: 100%;
       padding: 14px 16px 14px 44px;
@@ -159,27 +153,6 @@
       gap: 12px;
     }
 
-    .social-auth-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-    }
-
-    .social-auth-btn:hover {
-      opacity: 0.85;
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-sm);
-    }
-
     .auth-card a:hover {
       text-decoration: underline;
       opacity: 0.8;
@@ -197,9 +170,14 @@
 
     /* Small screens safeguards */
     @media (max-width: 360px) {
+      .auth-controls {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+      }
       .auth-card {
         padding: 24px 16px;
-        margin-top: 60px; /* Guarantee vertical spacing for top fixed header toggles */
+        margin-top: 60px; /* Guarantee vertical spacing for top header toggles */
       }
       .auth-title {
         font-size: 1.5rem;
@@ -229,7 +207,6 @@
       <div class="form-group">
         <label for="login-email">Email Address *</label>
         <div class="form-input-container">
-          <i class=""></i>
           <input type="email" id="login-email" required placeholder="" class="form-input">
         </div>
       </div>
@@ -237,10 +214,9 @@
       <div class="form-group">
         <label for="login-password">Password *</label>
         <div class="form-input-container">
-          <i class=""></i>
-          <input type="password" id="login-password" required placeholder="" class="form-input" style="padding-right: 40px;">
+          <input type="password" id="login-password" required placeholder="" class="form-input" style="padding-right: 44px;">
           <!-- Show/Hide eye icon -->
-          <i class="fas fa-eye" id="toggle-pwd" style="left: auto; right: 16px; cursor: pointer;"></i>
+          <i class="fas fa-eye toggle-password" data-target="login-password"></i>
         </div>
       </div>
 
@@ -257,31 +233,38 @@
     <div class="social-auth">
       <div class="social-auth-title">Or Continue With</div>
       <div class="social-auth-buttons">
-        <button class="social-auth-btn" onclick="window.location.href='dashboard.html'" style="background: #ffffff; color: #1f2937; border-color: #e2e8f0;">
-          <i class="fab fa-google" style="color: #4285f4;"></i> Continue with Google
+        <button class="social-auth-btn" onclick="window.location.href='dashboard.html'">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo"> Continue with Google
         </button>
-        <button class="social-auth-btn" onclick="window.location.href='dashboard.html'" style="background: #000000; color: #ffffff; border-color: #000000;">
-          <i class="fab fa-apple"></i> Continue with Apple
+        <button class="social-auth-btn" onclick="window.location.href='dashboard.html'">
+          <i class="fab fa-apple apple-icon"></i> Continue with Apple
         </button>
       </div>
     </div>
 
-    <p style="margin-top: 32px; font-size: 0.9rem; color: var(--text-muted);">Don't have an account? <a href="register.html" style="color: var(--accent-color); font-weight: 600;">Create Client Account</a></p>
+    <p style="margin-top: 32px; font-size: 0.9rem; color: var(--text-muted);">Don't have an account? <a href="register.html" style="color: var(--accent-color); font-weight: 600;">Create  Account</a></p>
   </div>
 
   <!-- Scripts -->
   <script src="../assets/js/main.js"></script>
   <script>
-    // Local show-hide password toggle
-    const togglePwd = document.getElementById('toggle-pwd');
-    const pwdInput = document.getElementById('login-password');
-    if (togglePwd && pwdInput) {
-      togglePwd.addEventListener('click', () => {
-        const type = pwdInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        pwdInput.setAttribute('type', type);
-        togglePwd.className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+    // Unified show-hide password toggle
+    document.querySelectorAll('.toggle-password').forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        
+        if (input.type === 'password') {
+          input.type = 'text';
+          this.classList.remove('fa-eye');
+          this.classList.add('fa-eye-slash');
+        } else {
+          input.type = 'password';
+          this.classList.remove('fa-eye-slash');
+          this.classList.add('fa-eye');
+        }
       });
-    }
+    });
   </script>
 </body>
 </html>

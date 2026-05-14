@@ -23,15 +23,16 @@ html[dir="rtl"] .logo-text {
   letter-spacing: 0;
 }
 
+/* Let justify-content: space-between handle distribution, remove pushing margins */
 html[dir="rtl"] .main-nav {
-  margin-left: 0;
-  margin-right: auto;
+  margin: 0;
 }
 
 html[dir="rtl"] .header-actions {
-  margin-right: 0;
-  margin-left: auto;
+  margin: 0;
   flex-direction: row-reverse;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 /* Footer Reversals */

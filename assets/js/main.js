@@ -12,7 +12,32 @@ document.addEventListener('DOMContentLoaded', () => {
   initColdStartSimulator();
   initSAMDownloader();
   initContactFormValidation();
+  initBackToTop();
 });
+
+/* ==========================================================================
+   0. Back To Top Button
+   ========================================================================== */
+function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.id = 'back-to-top';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 /* ==========================================================================
    1. Theme & Dark Mode Setup

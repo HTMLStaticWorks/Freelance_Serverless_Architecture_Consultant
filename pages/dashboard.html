@@ -304,11 +304,14 @@
     .console-header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       border-bottom: 1px solid var(--border-color);
       padding-bottom: 12px;
       margin-bottom: 16px;
       font-size: 0.8rem;
       color: #94a3b8;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .console-log-area {
@@ -317,6 +320,28 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+    }
+
+    .log-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-left: 3px solid var(--success);
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.01);
+      border-radius: 4px;
+      gap: 12px;
+      transition: background var(--transition-fast);
+    }
+
+    .log-entry:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .log-entry span {
+      line-height: 1.4;
     }
 
     /* Input with inside Attach clip icon */
@@ -372,10 +397,16 @@
       .dashboard-header {
         left: var(--sidebar-width);
         width: calc(100% - var(--sidebar-width));
+        padding: 0 40px;
+      }
+
+      .dashboard-header-right {
+        gap: 24px;
       }
 
       .dashboard-main {
         margin-left: var(--sidebar-width);
+        padding: 100px 40px 40px 40px;
       }
 
       #dashboard-sidebar-toggle {
@@ -462,6 +493,29 @@
       #dashboard-view-title {
         font-size: 1.1rem !important;
         font-weight: 700 !important;
+      }
+
+      /* Fix log console overlapping on 360px */
+      .terminal-console {
+        padding: 16px 12px;
+      }
+      .console-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .log-entry {
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px;
+      }
+      .log-entry > span:last-child {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        padding-top: 4px;
+        margin-top: 2px;
       }
     }
 
@@ -624,19 +678,21 @@
           <span>Status: ACTIVE RUNNING</span>
         </div>
         <div id="dashboard-log-stream" class="console-log-area">
-          <div class="log-entry"
-            style="border-left: 3px solid var(--success); padding: 8px 12px; margin-bottom: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.01);">
+          <div class="log-entry">
             <span>[15:15:35] <strong style="color: var(--accent-color);">AWS-Lambda</strong>: Executing <span
                 style="color: var(--secondary-color);">getDesignsList</span></span>
-            <span><span style="margin-right: 12px; color: var(--text-muted);">45ms | 128MB</span> <span
-                style="color: var(--success); font-weight: 700;">SUCCESS</span></span>
+            <span>
+              <span style="margin-right: 12px; color: var(--text-muted);">45ms | 128MB</span>
+              <span style="color: var(--success); font-weight: 700;">SUCCESS</span>
+            </span>
           </div>
-          <div class="log-entry"
-            style="border-left: 3px solid var(--success); padding: 8px 12px; margin-bottom: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.01);">
+          <div class="log-entry">
             <span>[15:15:21] <strong style="color: var(--accent-color);">Cloudflare-Worker</strong>: Executing <span
                 style="color: var(--secondary-color);">validateAuthToken</span></span>
-            <span><span style="margin-right: 12px; color: var(--text-muted);">8ms | 128MB</span> <span
-                style="color: var(--success); font-weight: 700;">SUCCESS</span></span>
+            <span>
+              <span style="margin-right: 12px; color: var(--text-muted);">8ms | 128MB</span>
+              <span style="color: var(--success); font-weight: 700;">SUCCESS</span>
+            </span>
           </div>
         </div>
       </div>
@@ -755,7 +811,7 @@
           </div>
 
           <button class="btn btn-primary" onclick="alert('Revision request sent successfully!')" style="width: 100%;"><i
-              class="fas fa-paper-plane"></i> Submit Revision Request</button>
+              class="fas fa-paper-plane"></i> Submit Revision</button>
         </div>
       </div>
     </div>

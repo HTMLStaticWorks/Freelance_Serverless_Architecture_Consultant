@@ -631,10 +631,6 @@ textarea.form-input {
 }
 
 .social-link {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -643,8 +639,7 @@ textarea.form-input {
 }
 
 .social-link:hover {
-  background: var(--accent-color);
-  color: var(--primary-color);
+  color: var(--accent-color);
   transform: translateY(-3px);
 }
 
@@ -840,7 +835,7 @@ textarea.form-input {
 /* 1024px to 1440px + Header Menu Options */
 @media (min-width: 1024px) {
   .site-header {
-    padding: 0;
+    padding: 0 24px;
   }
   .menu-toggle {
     display: none;
@@ -855,16 +850,16 @@ textarea.form-input {
   /* Show RTL, Theme, and Login buttons on the right side */
   .header-actions {
     display: flex;
-    gap: 8px;
+    gap: 12px;
   }
   .nav-list {
-    gap: 8px;
+    gap: 12px;
   }
   .nav-link {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
   .logo-text {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -1059,4 +1054,172 @@ textarea.form-input {
   .section {
     padding: 60px 0;
   }
+}
+
+/* ==========================================================================
+   SOCIAL AUTHENTICATION BUTTONS
+   ========================================================================== */
+.social-auth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-auth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--bg-card) !important; /* Dynamically follows card background */
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-heading) !important;
+}
+
+.social-auth-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-color);
+  background: var(--bg-header) !important;
+}
+
+/* Original Brand Logo Sizes and Alignment */
+.social-auth-btn img,
+.social-auth-btn i {
+  width: 20px;
+  height: 20px;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+}
+
+/* Eye Icon Position in Auth Pages */
+.form-input-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Default styling for any icon in a container (usually left-aligned) */
+.form-input-container i:not(.toggle-password) {
+  position: absolute;
+  left: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 1rem;
+  z-index: 10;
+  transition: color var(--transition-fast);
+}
+
+.toggle-password:hover {
+  color: var(--accent-color);
+}
+
+/* Apple Icon theme handling */
+.social-auth-btn .apple-icon { color: var(--text-heading); }
+
+/* Ensure icons are always visible regardless of global theme */
+[data-theme="dark"] .social-auth-btn {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+}
+
+/* --- Back to Top Button --- */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--accent-color);
+  color: #ffffff;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--secondary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Social Media Links (Contact & Footer) --- */
+.social-link {
+  transition: all var(--transition-fast);
+  color: var(--text-heading) !important; /* Default to heading color */
+  text-decoration: none;
+  background: transparent !important; /* Force no background */
+}
+
+.social-link:hover {
+  color: var(--accent-color) !important;
+  transform: scale(1.1) translateY(-3px);
+  background: transparent !important;
+}
+
+/* Specific brand colors on hover for a premium feel */
+.social-link[aria-label="GitHub"]:hover { color: #333 !important; }
+.social-link[aria-label="LinkedIn"]:hover { color: #0077b5 !important; }
+.social-link[aria-label="Twitter"]:hover, 
+.social-link[aria-label="X"]:hover { color: #1da1f2 !important; }
+.social-link[aria-label="YouTube"]:hover { color: #ff0000 !important; }
+
+/* Dark mode overrides for social links */
+[data-theme="dark"] .social-link {
+  color: var(--text-light) !important;
+}
+
+[data-theme="dark"] .social-link[aria-label="GitHub"]:hover { color: #ffffff !important; }
+
+/* Footer specific social link sizing */
+.footer-socials .social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--text-footer) !important;
+}
+
+.footer-socials .social-link:hover {
+  background: var(--accent-color) !important;
+  color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .social-auth-btn:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
 }
